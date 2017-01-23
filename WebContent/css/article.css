@@ -1,0 +1,93 @@
+ .headerMenu {
+	height: 60px;
+	width: 100%;
+	background-color: #ffffff;
+}
+
+ .headerMenu .alignment {
+	float: left;
+	width: 80%;
+	height: 100%;
+}
+
+ .headerMenu .alignment .headerBlank {
+	height: 100%;
+	width: 25%;
+	float: left;
+	background-color: #4E5465;
+	display: inline-block;
+}
+
+ .headerMenu .alignment .headerUser {
+	float: left;
+	height: 100%;
+	width: 12.5%;
+	background-color: #4E5465;
+	display: inline-block;
+}
+
+ .headerMenu .alignment .headerUser .headerUsertitile {
+	float: left;
+	font-family: "微软雅黑";
+	color: #ffffff;
+	font-size: 18px;
+	margin-top: 18px;
+}
+
+ .headerMenu .alignment .menubardiv {
+	width: 37.5%;
+	height: 60px;
+	float: left;
+	display: inline-block;
+	background-color: #ffffff;
+}
+
+ .headerMenu .menubardiv .layui-nav {
+	background-color: #FFFFFF;
+	width: 100%;
+	float: left;
+}
+
+ .headerMenu .menubardiv .layui-nav .layui-nav-item {
+	width: 25%;
+	text-align: center;
+}
+
+ .headerMenu .alignment .searchFormdiv {
+	height: 60px;
+	width: 25%;
+	float: right;
+	display: inline-block;
+}
+
+ .headerMenu .searchFormdiv .searchForm div {
+	margin-top: 10px;
+	float: right;
+	margin-left: 3px;
+	display: inline-block;
+	height: 100%;
+	width:25%;
+	background-color: #f6f6f6;
+}
+ .headerMenu .searchFormdiv .searchForm div button{
+	float: right;
+	height: 70%;
+	width: 100%;
+}
+ .headerMenu .searchFormdiv .searchForm .layui-input {
+	margin-top: 9px;
+	float: right;
+	display: inline-block;
+	height:42px;
+	width: 70%;
+}
+ .headerMenu .login-in-out{
+	width: 20%;
+	height: 100%;
+	float: right;
+	background-color: #FFFFFF;
+}
+ .headerMenu .login-in-out .layui-nav{
+	background-color: #FFFFFF;
+	text-align: center;
+}

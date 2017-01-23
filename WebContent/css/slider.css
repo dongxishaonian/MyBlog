@@ -1,0 +1,110 @@
+* {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+
+/************************样式区。原本都打算写到JS里面的。不过这玩意改的比较多。新手改CSS没啥问题我就写在这了*****************************************/
+
+
+/*  修改输出屏大小  */
+
+.banner {
+	/*  修改输出屏大小  */
+	width: 550px;
+	height: 100px;
+	overflow: hidden;
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.banner .img {
+	width: 99999px;
+	position: absolute;
+	left: 0px;
+	top: 0;
+}
+
+.banner .img li {
+	float: left;
+}
+
+
+/*/ 修改图片大小 /*/
+
+.banner .img img {
+	width: 550px;
+}
+
+
+/*/ 小圆圈 /*/
+
+.banner .num {
+	position: absolute;
+	width: 100%;
+	bottom: 10px;
+	left: 0;
+	text-align: center;
+	font-size: 0px;
+}
+
+.banner .num li {
+	width: 10px;
+	height: 10px;
+	background: #888;
+	border-radius: 50%;
+	display: inline-block;
+	margin: 0 3px;
+	cursor: pointer;
+}
+
+.banner .num li.on {
+	background: #1A54E7;
+}
+
+
+/*/ 按钮 /*/
+
+.banner .btn {
+	width: 30px;
+	height: 50px;
+	background: rgba(0, 0, 0, 0.5);
+	position: absolute;
+	top: 50%;
+	margin-top: -25px;
+	cursor: pointer;
+	text-align: center;
+	line-height: 50px;
+	color: #fff;
+	font-size: 40px;
+	font-family: "宋体";
+	display: none;
+}
+
+.banner:hover .btn {
+	display: block;
+}
+
+.banner .btn_l {
+	left: 0;
+}
+
+.banner .btn_r {
+	right: 0;
+}
+
+
+/*/ 第一个轮播 /*/
+
+#ban1 .banner {
+	width: 60%;
+	height: 500px;
+	margin: 0px auto;  
+	border: 0px solid #000;
+}
+#ban1 .banner .img img {
+	width: 850px;
+	height: 500px;
+}

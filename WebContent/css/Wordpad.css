@@ -1,0 +1,24 @@
+body{
+	background-color: #F2F2F2;
+}
+.writerpad{
+	height: 100%;
+}
+.writerpad  ul {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	width: 40%;
+	float: left;
+	margin-left: 20%;
+}
+.writerpad button{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	float: right;
+	margin-right: 20%;
+}
+.writerpad ul li {
+	font-family: "黑体";
+	font-size: 30px;
+	color: #111111
+}

@@ -1,0 +1,27 @@
+.layui-nav .layui-this:after,
+.layui-nav-bar {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 0;
+	height: 5px;
+	background-color: #3F51B5;
+	transition: all .2s;
+	-webkit-transition: all .2s
+}
+.layui-nav-tree .layui-nav-bar {
+	width: 5px;
+	height: 0;
+	background-color:#3F51B5
+}
+.layui-nav>.layui-nav-item>a {
+	color: #555555;
+	font-family: "微软雅黑";
+	font-size: 15px;
+}
+
+.layui-nav>.layui-nav-item>a:hover {
+	color: #3F51B5;
+	font-family: "微软雅黑";
+	font-size: 15px;
+}

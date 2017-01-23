@@ -1,0 +1,267 @@
+@font-face {
+	font-family: 'Roboto-Regular';
+	font-style: normal;
+	font-weight: 400;
+	src: url(../font/Roboto-Regular.ttf);
+}
+
+.pageHeader {
+	height: 560px;
+	width: 100%;
+}
+
+
+/*-----------------------------*/
+ .headerPic {
+	height: 500px;
+	width: 100%;
+	background-color: #FFFFFF;
+}
+
+
+/*----------------------------------*/
+
+.pageContent {
+	height: 1500px;
+	width: 100%;
+	position: relative;
+}
+
+.pageContent .contentHeader {
+	height: 300px;
+	width: 100%;
+	background-color: #F6F6F6;
+}
+
+.pageContent .contentHeader .contentHeaderDiv {
+	width: 60%;
+	height: 100%;
+	background-color: #f6f6f6;
+	margin: 0 auto;
+}
+
+.pageContent .contentHeader .contentHeaderDiv .left {
+	width: 50%;
+	height: 100%;
+	float: left;
+	background-color: #f6f6f6;
+}
+
+.pageContent .contentHeader .contentHeaderDiv .left img {
+	width: 95%;
+	margin-top: 20px;
+	float: left;
+}
+
+.pageContent .contentHeader .contentHeaderDiv .right {
+	width: 50%;
+	height: 100%;
+	float: right;
+	background-color: #f6f6f6;
+}
+
+.pageContent .contentHeader .contentHeaderDiv .right img {
+	width: 95%;
+	margin-top: 20px;
+	float: right;
+}
+
+.pageContent .content {
+	height: 900px;
+	width: 100%;
+	background-color: #FFFFFF;
+}
+
+.pageContent .content .contentDiv {
+	width: 60%;
+	height: 100%;
+	background-color: #FFFFFF;
+	margin: 0 auto;
+}
+
+.pageContent .content .contentDiv .contentDiv-header {
+	width: 100%;
+	height: 31%;
+	background-color: ##FFFFFF;
+}
+
+.pageContent .content .contentDiv .contentDiv-header img {
+	width: 100%;
+	margin-top: 5px;
+}
+
+.pageContent .content .contentDiv .left {
+	width: 33%;
+	height: 69%;
+	float: left;
+	background-color: #FFFFFF;
+}
+
+.pageContent .content .contentDiv .left .shang {
+	width: 91%;
+	height: 48%;
+	margin-top: 10px;
+	float: left;
+	background-color: #FFFFFF;
+}
+
+.pageContent .content .contentDiv .left .shang img {
+	width: 100%;
+	height: 85%;
+}
+
+.pageContent .content .contentDiv .left .xia {
+	width: 91%;
+	height: 48%;
+	margin-top: 10px;
+	float: left;
+	background-color: #FFFFFF;
+}
+
+.pageContent .content .contentDiv .left .xia img {
+	width: 100%;
+	height: 85%;
+}
+
+.pageContent .content .contentDiv .center {
+	width: 34%;
+	height: 69%;
+	float: left;
+	background-color: #FFFFFF;
+}
+
+.pageContent .content .contentDiv .center .shang {
+	width: 91%;
+	height: 48%;
+	margin: 10px auto 0 auto;
+	background-color: #FFFFFF;
+}
+
+.pageContent .content .contentDiv .center .shang img {
+	width: 100%;
+	height: 85%;
+}
+
+.pageContent .content .contentDiv .center .xia {
+	width: 90%;
+	height: 48%;
+	margin-top: 10px;
+	margin: 10px auto 0 auto;
+	background-color: #FFFFFF;
+}
+
+.pageContent .content .contentDiv .center .xia img {
+	width: 100%;
+	height: 85%;
+}
+
+.pageContent .content .contentDiv .right {
+	width: 33%;
+	height: 69%;
+	float: right;
+	background-color: #FFFFFF;
+}
+
+.pageContent .content .contentDiv .right .shang {
+	width: 90%;
+	height: 48%;
+	margin-top: 10px;
+	float: right;
+	background-color: #FFFFFF;
+}
+
+.pageContent .content .contentDiv .right .shang img {
+	width: 100%;
+	height: 85%;
+}
+
+.pageContent .content .contentDiv .right .xia {
+	width: 90%;
+	height: 48%;
+	margin-top: 10px;
+	float: right;
+	background-color:#FFFFFF;
+}
+
+.pageContent .content .contentDiv .right .xia img {
+	width: 100%;
+	height: 85%;
+}
+
+.pageContent .contentFooter {
+	height: 300px;
+	width: 100%;
+	background-color: #f6f6f6;
+	position: absolute;
+	bottom: 0px;
+}
+
+.pageContent .contentFooter .contentFooterDiv {
+	width: 60%;
+	height: 100%;
+	background-color: #FF5722;
+	margin: 0 auto;
+}
+
+.pageContent .contentFooter .contentFooterDiv .left {
+	width: 50%;
+	height: 100%;
+	float: left;
+	background-color:#f6f6f6;
+}
+.pageContent .contentFooter .contentFooterDiv .left img {
+	width: 95%;
+	margin-top: 20px;
+	float: left;
+}
+.pageContent .contentFooter .contentFooterDiv .right {
+	width: 50%;
+	height: 100%;
+	float: right;
+	background-color:#f6f6f6;
+}
+.pageContent .contentFooter .contentFooterDiv .right img {
+	width: 95%;
+	margin-top: 20px;
+	float: right;
+}
+/*----------------------------------*/
+
+.pageFooter {
+	height: 100px;
+	width: 100%;
+}
+
+/*.pageFooter .footerContent {
+	height: 200px;
+	width: 100%;
+	background-color:gray;
+}*/
+
+/*.pageFooter .footerContent .footerContentDiv {
+	height: 100%;
+	width: 60%;
+	margin: 0 auto;
+}
+.pageFooter .footerContent .footerContentDiv img{
+	width: 100%;
+	height: 100%;
+}*/
+.pageFooter .footerBeizhu {
+	height: 100px;
+	width: 100%;
+	background-color: #ffffff;
+}
+
+.pageFooter .footerBeizhu .footerBeizhuDiv {
+	position: relative;
+	height: 100px;
+	width: 60%;
+	margin: 0 auto;
+	background-color: #FFFFFF;
+	text-align: center;
+}
+.pageFooter .footerBeizhu .footerBeizhuDiv p{
+	font-family: "微软雅黑" ;
+	color: #bdc1cd;
+}

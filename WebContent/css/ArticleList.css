@@ -1,0 +1,49 @@
+body{
+	background-color: #F6F6F6;
+}
+.articleListBody{
+	position:absolute;
+	width: 60%;
+	height: 850px;
+	margin-left:20%;
+	background-color: #F6F6F6;
+}
+.articleListBody .articleListBody-head{
+	height:auto;
+	width: 100%;
+	background-color: #F6F6F6;
+	margin-top: 15px;
+}
+.articleListBody .ListContent{
+	width: 100%;
+	height: 800px;
+}
+#demo7{
+	text-align: center;
+}
+.layui-laypage .layui-laypage-total {
+	height: 30px;
+	line-height: 30px;
+	margin-left: 1px;
+	border: none;
+	font-weight: 400;
+	background-color: #F6F6F6;
+}
+ .footerBeizhu {
+	height: 100px;
+	width: 100%;
+	background-color: #F6F6F6;
+}
+
+ .footerBeizhu .footerBeizhuDiv {
+	position: relative;
+	height: 100px;
+	width: 60%;
+	margin: 0 auto;
+	background-color: #F6F6F6;
+	text-align: center;
+}
+ .footerBeizhu .footerBeizhuDiv p{
+	font-family: "微软雅黑" ;
+	color: #bdc1cd;
+}
