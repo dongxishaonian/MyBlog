@@ -17,10 +17,6 @@
 <link rel="stylesheet" href="css/reset.css">
 <link rel="stylesheet" href="css/supersized.css">
 <link rel="stylesheet" href="css/style.css">
-<!--  HTML5  shim, for IE6-8 support of HTML5 elements -->
-<!--[if lt IE 9]>
-            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
 
 </head>
 
@@ -68,7 +64,6 @@
 		</div>
 	</div>
 
-	<!-- Javascript -->
 	<script src="http://apps.bdimg.com/libs/jquery/1.6.4/jquery.min.js"
 		type="text/javascript"></script>
 	<script src="js/supersized.3.2.7.min.js" type="text/javascript"></script>

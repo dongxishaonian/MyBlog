@@ -34,10 +34,18 @@ public class UserController {
 			request.setAttribute("errorMsg", "用户名或密码错误！");
 			return "Login";
 		} else {
-			HttpSession session = request.getSession();
-			session.setAttribute("currentUser", resultUser);
-			return "redirect:/index.jsp";
+			HttpSession  session= request.getSession();
+			System.out.println("username  = "+resultUser.getUsername());
+			session.setAttribute("username", resultUser.getUsername());
+			return "forward:/index.jsp";
 		}
+	}
+	
+	@RequestMapping("/loginout.do")
+	public String loginout(HttpServletRequest request){
+		HttpSession session = request.getSession();
+		session.setAttribute("username", null);
+		return "index";
 	}
 
 }
