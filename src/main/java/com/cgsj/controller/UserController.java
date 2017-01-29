@@ -37,7 +37,7 @@ public class UserController {
 			HttpSession  session= request.getSession();
 			System.out.println("username  = "+resultUser.getUsername());
 			session.setAttribute("username", resultUser.getUsername());
-			return "forward:/index.jsp";
+			return "redirect:/index.jsp";
 		}
 	}
 	
