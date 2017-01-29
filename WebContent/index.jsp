@@ -42,24 +42,24 @@
 				</div>
 				<div class="menubardiv">
 					<ul class="layui-nav" lay-filter="">
-						<li class="layui-nav-item"><a href="">设计</a></li>
-						<li class="layui-nav-item layui-this"><a href="">前端</a></li>
-						<li class="layui-nav-item"><a href="">后端</a></li>
+						<li class="layui-nav-item"><a href="/MyBlog/list.do">设计</a></li>
+						<li class="layui-nav-item layui-this"><a href="/MyBlog/list.do">前端</a></li>
+						<li class="layui-nav-item"><a href="/MyBlog/list.do">后端</a></li>
 						<li class="layui-nav-item"><a href="javascript:;">Other</a>
 							<dl class="layui-nav-child">
 								<!-- 二级菜单 -->
 								<dd>
-									<a href="">工具资源</a>
+									<a href="/MyBlog/list.do">工具资源</a>
 								</dd>
 								<dd>
-									<a href="">bug记录</a>
+									<a href="/MyBlog/list.do">bug记录</a>
 								</dd>
 								<dd>
-									<a href="">经验总结</a>
+									<a href="/MyBlog/list.do">经验总结</a>
 								</dd>
 								<c:if test="${sessionScope.username eq 'admin'}">
 									<dd>
-										<a href="">写文章</a>
+										<a href="/MyBlog/write.do">写文章</a>
 									</dd>
 								</c:if>
 							</dl></li>
