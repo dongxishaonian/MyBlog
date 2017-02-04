@@ -33,24 +33,27 @@
 			</div>
 			<div class="menubardiv">
 				<ul class="layui-nav" lay-filter="">
-					<li class="layui-nav-item"><a href="">设计</a></li>
-					<li class="layui-nav-item layui-this"><a href="">前端</a></li>
-					<li class="layui-nav-item"><a href="">后端</a></li>
+					<li class="layui-nav-item"><a href="/MyBlog/list.do">设计</a></li>
+					<li class="layui-nav-item layui-this"><a
+						href="/MyBlog/list.do">前端</a></li>
+					<li class="layui-nav-item"><a href="/MyBlog/list.do">后端</a></li>
 					<li class="layui-nav-item"><a href="javascript:;">Other</a>
 						<dl class="layui-nav-child">
 							<!-- 二级菜单 -->
 							<dd>
-								<a href="">工具资源</a>
+								<a href="/MyBlog/list.do">工具资源</a>
 							</dd>
 							<dd>
-								<a href="">bug记录</a>
+								<a href="/MyBlog/list.do">bug记录</a>
 							</dd>
 							<dd>
-								<a href="">经验总结</a>
+								<a href="/MyBlog/list.do">经验总结</a>
 							</dd>
-							<dd>
-								<a href="">写文章</a>
-							</dd>
+							<c:if test="${sessionScope.username eq 'admin'}">
+								<dd>
+									<a href="/MyBlog/write.do">写文章</a>
+								</dd>
+							</c:if>
 						</dl></li>
 				</ul>
 			</div>
@@ -64,17 +67,27 @@
 				</form>
 			</div>
 		</div>
-		<div class="login-in-out">
+		<div class="login-in-out" style="text-align: center;">
 			<ul class="layui-nav" lay-filter="">
 				<li class="layui-nav-item"><a href="javascript:;">个人中心</a>
 					<dl class="layui-nav-child">
 						<!-- 二级菜单 -->
-						<dd>
-							<a href="/Stubborn Blog/Login.html">登录</a>
-						</dd>
-						<dd>
-							<a href="">退出</a>
-						</dd>
+						<c:choose>
+							<c:when
+								test="${sessionScope.username eq '' || sessionScope.username eq null}">
+								<dd>
+									<a href="/MyBlog/login.do">登录</a>
+								</dd>
+							</c:when>
+							<c:otherwise>
+								<dd>
+									<a>设置</a>
+								</dd>
+								<dd>
+									<a href="/MyBlog/loginout.do">退出</a>
+								</dd>
+							</c:otherwise>
+						</c:choose>
 					</dl></li>
 			</ul>
 		</div>
