@@ -2,6 +2,7 @@
 	contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 
@@ -118,185 +119,27 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td style="width: 5px;">1</td>
-						<td>我的名字叫做勇敢</td>
-						<td>98</td>
-						<td>1989-10-14</td>
-						<td>
-							<form class="layui-form layui-form-pane" action="">
-								<select name="city" lay-verify="">
-									<option value="">设置状态</option>
-									<option value="010">北京</option>
-									<option value="021">上海</option>
-									<option value="">&nbsp;</option>
-								</select>
-							</form>
-						</td>
-						<td>编辑|分类|置顶|删除</td>
-					</tr>
-					<tr>
-						<td style="width: 5px;">1</td>
-						<td>我的名字叫做勇敢</td>
-						<td>98</td>
-						<td>1989-10-14</td>
-						<td>
-							<form class="layui-form layui-form-pane" action="">
-								<select name="city" lay-verify="">
-									<option value="">设置状态</option>
-									<option value="010">北京</option>
-									<option value="021">上海</option>
-									<option value="0571">杭州</option>
-									<option value="">&nbsp;</option>
-								</select>
-							</form>
-						</td>
-						<td>编辑|分类|置顶|删除</td>
-					</tr>
-					<tr>
-						<td style="width: 5px;">1</td>
-						<td>我的名字叫做勇敢</td>
-						<td>98</td>
-						<td>1989-10-14</td>
-						<td>
-							<form class="layui-form layui-form-pane" action="">
-								<select name="city" lay-verify="">
-									<option value="">设置状态</option>
-									<option value="010">北京</option>
-									<option value="021">上海</option>
-									<option value="0571">杭州</option>
-									<option value="">&nbsp;</option>
-								</select>
-							</form>
-						</td>
-						<td>编辑|分类|置顶|删除</td>
-					</tr>
-					<tr>
-						<td style="width: 5px;">1</td>
-						<td>我的名字叫做勇敢</td>
-						<td>98</td>
-						<td>1989-10-14</td>
-						<td>
-							<form class="layui-form layui-form-pane" action="">
-								<select name="city" lay-verify="">
-									<option value="">设置状态</option>
-									<option value="010">北京</option>
-									<option value="021">上海</option>
-									<option value="0571">杭州</option>
-									<option value="">&nbsp;</option>
-								</select>
-							</form>
-						</td>
-						<td>编辑|分类|置顶|删除</td>
-					</tr>
-					<tr>
-						<td style="width: 5px;">1</td>
-						<td>我的名字叫做勇敢</td>
-						<td>98</td>
-						<td>1989-10-14</td>
-						<td>
-							<form class="layui-form layui-form-pane" action="">
-								<select name="city" lay-verify="">
-									<option value="">设置状态</option>
-									<option value="010">北京</option>
-									<option value="021">上海</option>
-									<option value="0571">杭州</option>
-									<option value="">&nbsp;</option>
-								</select>
-							</form>
-						</td>
-						<td>编辑|分类|置顶|删除</td>
-					</tr>
-					<tr>
-						<td style="width: 5px;">1</td>
-						<td>我的名字叫做勇敢</td>
-						<td>98</td>
-						<td>1989-10-14</td>
-						<td>
-							<form class="layui-form layui-form-pane" action="">
-								<select name="city" lay-verify="">
-									<option value="">设置状态</option>
-									<option value="010">北京</option>
-									<option value="021">上海</option>
-									<option value="0571">杭州</option>
-									<option value="">&nbsp;</option>
-								</select>
-							</form>
-						</td>
-						<td>编辑|分类|置顶|删除</td>
-					</tr>
-					<tr>
-						<td style="width: 5px;">1</td>
-						<td>我的名字叫做勇敢</td>
-						<td>98</td>
-						<td>1989-10-14</td>
-						<td>
-							<form class="layui-form layui-form-pane" action="">
-								<select name="city" lay-verify="">
-									<option value="">设置状态</option>
-									<option value="010">北京</option>
-									<option value="021">上海</option>
-									<option value="0571">杭州</option>
-									<option value="">&nbsp;</option>
-								</select>
-							</form>
-						</td>
-						<td>编辑|分类|置顶|删除</td>
-					</tr>
-					<tr>
-						<td style="width: 5px;">1</td>
-						<td>我的名字叫做勇敢</td>
-						<td>98</td>
-						<td>1989-10-14</td>
-						<td>
-							<form class="layui-form layui-form-pane" action="">
-								<select name="city" lay-verify="">
-									<option value="">设置状态</option>
-									<option value="010">北京</option>
-									<option value="021">上海</option>
-									<option value="0571">杭州</option>
-									<option value="">&nbsp;</option>
-								</select>
-							</form>
-						</td>
-						<td>编辑|分类|置顶|删除</td>
-					</tr>
-					<tr>
-						<td style="width: 5px;">1</td>
-						<td>我的名字叫做勇敢</td>
-						<td>98</td>
-						<td>1989-10-14</td>
-						<td>
-							<form class="layui-form layui-form-pane" action="">
-								<select name="city" lay-verify="">
-									<option value="">设置状态</option>
-									<option value="010">北京</option>
-									<option value="021">上海</option>
-									<option value="0571">杭州</option>
-									<option value="">&nbsp;</option>
-								</select>
-							</form>
-						</td>
-						<td>编辑|分类|置顶|删除</td>
-					</tr>
-					<tr>
-						<td style="width: 5px;">1</td>
-						<td>我的名字叫做勇敢</td>
-						<td>98</td>
-						<td>1989-10-14</td>
-						<td>
-							<form class="layui-form layui-form-pane" action="">
-								<select name="city" lay-verify="">
-									<option value="">设置状态</option>
-									<option value="010">北京</option>
-									<option value="021">上海</option>
-									<option value="0571">杭州</option>
-									<option value="">&nbsp;</option>
-								</select>
-							</form>
-						</td>
-						<td>编辑|分类|置顶|删除</td>
-					</tr>
+					<c:forEach  varStatus="status"  items="${allArticles}" var="article">
+						<tr>
+							<td style="width: 5px;">${status.count}</td>
+							<td>${article.title}</td>
+							<td>${article.readingVolume}</td>
+							<td><fmt:formatDate type="date"  value="${article.releaseDate}"/></td>
+							<td>
+								<form class="layui-form layui-form-pane" action="">
+									<select name="city" lay-verify="">
+										<option value="">设置状态</option>
+										<option value="010">北京</option>
+										<option value="021">上海</option>
+										<option value="0571">杭州</option>
+										<option value="">&nbsp;</option>
+									</select>
+								</form>
+							</td>
+							<td>编辑|分类|置顶|删除</td>
+						</tr>
+					</c:forEach>
+
 				</tbody>
 			</table>
 			<div style="background-color: #F6F6F6;" id="demo7"></div>
