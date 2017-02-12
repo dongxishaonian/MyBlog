@@ -34,21 +34,21 @@
 			</div>
 			<div class="menubardiv">
 				<ul class="layui-nav" lay-filter="">
-					<li class="layui-nav-item"><a href="/MyBlog/list.do">设计</a></li>
+					<li class="layui-nav-item"><a href="/MyBlog/list.do?articleType=design">设计</a></li>
 					<li class="layui-nav-item layui-this"><a
-						href="/MyBlog/list.do">前端</a></li>
-					<li class="layui-nav-item"><a href="/MyBlog/list.do">后端</a></li>
+						href="/MyBlog/list.do?articleType=front-end">前端</a></li>
+					<li class="layui-nav-item"><a href="/MyBlog/list.do?articleType=back-end">后端</a></li>
 					<li class="layui-nav-item"><a href="javascript:;">Other</a>
 						<dl class="layui-nav-child">
 							<!-- 二级菜单 -->
 							<dd>
-								<a href="/MyBlog/list.do">工具资源</a>
+								<a href="/MyBlog/list.do?articleType=tool">工具资源</a>
 							</dd>
 							<dd>
-								<a href="/MyBlog/list.do">bug记录</a>
+								<a href="/MyBlog/list.do?articleType=bugRecord">bug记录</a>
 							</dd>
 							<dd>
-								<a href="/MyBlog/list.do">经验总结</a>
+								<a href="/MyBlog/list.do?articleType=experience">经验总结</a>
 							</dd>
 							<c:if test="${sessionScope.username eq 'admin'}">
 								<dd>
@@ -95,8 +95,7 @@
 	</div>
 	<div class="articleListBody">
 		<div class="articleListBody-head">
-			<span class="layui-breadcrumb"> <a href="/">首页</a> <a
-				href="/demo/">设计</a> <a><cite>导航元素</cite></a>
+			<span class="layui-breadcrumb"> <a href="/MyBlog">Home</a> <a><cite><c:out value="${articleType}"></c:out></cite></a> 
 			</span>
 		</div>
 		<hr />
@@ -136,7 +135,7 @@
 									</select>
 								</form>
 							</td>
-							<td>编辑|分类|置顶|删除</td>
+							<td>编辑|分类|置顶|<a href="/MyBlog/delete.do?articleType=${articleType}&deleteId=${article.id}">删除</a></td>
 						</tr>
 					</c:forEach>
 

@@ -11,5 +11,6 @@ public interface ArticleDao {
 	//获取指定类型文章
 	public ArrayList<BlogArticle> gainByType(String articleType);
 	
-
+	//删除指定文章
+	public int deletebyId(Integer id);
 }
