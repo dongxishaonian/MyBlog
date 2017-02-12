@@ -2,7 +2,7 @@
 	contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 
@@ -13,11 +13,17 @@
 <link rel="stylesheet" href="css/article.css" />
 <link rel="stylesheet" href="layui/css/layui.css" type="text/css" />
 <link rel="stylesheet" href="css/laybar.css" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.0.3/jquery-confirm.min.css">
+<script src="js/jquery-1.12.0.min.js" type="text/javascript"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.0.3/jquery-confirm.min.js"
+	type="text/javascript"></script>
 </head>
 
 <body>
-	<script src="layui/layui.js"></script>
-	<script>
+	<script src="layui/layui.js" type="text/javascript"></script>
+	<script type="text/javascript">
 		layui.use('element', function() {
 			var element = layui.element();
 			//一些事件监听
@@ -34,10 +40,12 @@
 			</div>
 			<div class="menubardiv">
 				<ul class="layui-nav" lay-filter="">
-					<li class="layui-nav-item"><a href="/MyBlog/list.do?articleType=design">设计</a></li>
+					<li class="layui-nav-item"><a
+						href="/MyBlog/list.do?articleType=design">设计</a></li>
 					<li class="layui-nav-item layui-this"><a
 						href="/MyBlog/list.do?articleType=front-end">前端</a></li>
-					<li class="layui-nav-item"><a href="/MyBlog/list.do?articleType=back-end">后端</a></li>
+					<li class="layui-nav-item"><a
+						href="/MyBlog/list.do?articleType=back-end">后端</a></li>
 					<li class="layui-nav-item"><a href="javascript:;">Other</a>
 						<dl class="layui-nav-child">
 							<!-- 二级菜单 -->
@@ -59,7 +67,7 @@
 				</ul>
 			</div>
 			<div class="searchFormdiv">
-				<form class=" layui-form searchForm">
+				<form class=" layui-form searchForm" action="">
 					<div>
 						<button class="layui-btn layui-btn-primary">搜索</button>
 					</div>
@@ -95,7 +103,8 @@
 	</div>
 	<div class="articleListBody">
 		<div class="articleListBody-head">
-			<span class="layui-breadcrumb"> <a href="/MyBlog">Home</a> <a><cite><c:out value="${articleType}"></c:out></cite></a> 
+			<span class="layui-breadcrumb"> <a href="/MyBlog">Home</a> <a><cite><c:out
+							value="${articleType}" /></cite></a>
 			</span>
 		</div>
 		<hr />
@@ -118,12 +127,13 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach  varStatus="status"  items="${allArticles}" var="article">
+					<c:forEach varStatus="status" items="${allArticles}" var="article">
 						<tr>
 							<td style="width: 5px;">${status.count}</td>
 							<td>${article.title}</td>
 							<td>${article.readingVolume}</td>
-							<td><fmt:formatDate type="date"  value="${article.releaseDate}"/></td>
+							<td><fmt:formatDate type="date"
+									value="${article.releaseDate}" /></td>
 							<td>
 								<form class="layui-form layui-form-pane" action="">
 									<select name="city" lay-verify="">
@@ -135,7 +145,7 @@
 									</select>
 								</form>
 							</td>
-							<td>编辑|分类|置顶|<a href="/MyBlog/delete.do?articleType=${articleType}&deleteId=${article.id}">删除</a></td>
+							<td>编辑|分类|置顶|<a id="${article.id}" class="delete_article" href="javascript:void(0)">删除</a></td>
 						</tr>
 					</c:forEach>
 
@@ -153,7 +163,7 @@
 			</div>
 		</div>
 	</div>
-	<script>
+	<script type="text/javascript">
 		layui
 				.use(
 						[ 'form', 'layedit', 'laydate' ],
@@ -192,6 +202,24 @@
 				skip : true
 			});
 		});
+	</script>
+	<script type="text/javascript">
+	$(".delete_article").click(function() {
+		var delete_id = $(this).attr("id");
+		$.confirm({
+			title: '注意!',
+		    content: '是否要删除本文章!',
+		    useBootstrap: false,
+		    buttons: {
+		        继续: function () {
+		        	var articleType = "${articleType}";
+		        	window.location.href="/MyBlog/delete.do?articleType="+articleType+"&deleteId="+delete_id;
+		        },
+		        取消: function () {
+		        }
+		    }
+		});
+	})
 	</script>
 </body>
 
