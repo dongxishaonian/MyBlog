@@ -24,6 +24,11 @@ public class ArticleServiceImpl implements ArticleService {
 	public ArrayList<BlogArticle> gainByType(String articleType) {
 		return articleDao.gainByType(articleType);
 	}
+
+	@Override
+	public int deletebyId(Integer id) {
+		return articleDao.deletebyId(id);
+	}
 	
 	
 

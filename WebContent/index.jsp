@@ -42,28 +42,29 @@
 				</div>
 				<div class="menubardiv">
 					<ul class="layui-nav" lay-filter="">
-						<li class="layui-nav-item"><a href="/MyBlog/list.do">设计</a></li>
-						<li class="layui-nav-item layui-this"><a href="/MyBlog/list.do">前端</a></li>
-						<li class="layui-nav-item"><a href="/MyBlog/list.do">后端</a></li>
-						<li class="layui-nav-item"><a href="javascript:;">Other</a>
-							<dl class="layui-nav-child">
-								<!-- 二级菜单 -->
+					<li class="layui-nav-item"><a href="/MyBlog/list.do?articleType=design">设计</a></li>
+					<li class="layui-nav-item layui-this"><a
+						href="/MyBlog/list.do?articleType=front-end">前端</a></li>
+					<li class="layui-nav-item"><a href="/MyBlog/list.do?articleType=back-end">后端</a></li>
+					<li class="layui-nav-item"><a href="javascript:;">Other</a>
+						<dl class="layui-nav-child">
+							<!-- 二级菜单 -->
+							<dd>
+								<a href="/MyBlog/list.do?articleType=tool">工具资源</a>
+							</dd>
+							<dd>
+								<a href="/MyBlog/list.do?articleType=bugRecord">bug记录</a>
+							</dd>
+							<dd>
+								<a href="/MyBlog/list.do?articleType=experience">经验总结</a>
+							</dd>
+							<c:if test="${sessionScope.username eq 'admin'}">
 								<dd>
-									<a href="/MyBlog/list.do">工具资源</a>
+									<a href="/MyBlog/write.do">写文章</a>
 								</dd>
-								<dd>
-									<a href="/MyBlog/list.do">bug记录</a>
-								</dd>
-								<dd>
-									<a href="/MyBlog/list.do">经验总结</a>
-								</dd>
-								<c:if test="${sessionScope.username eq 'admin'}">
-									<dd>
-										<a href="/MyBlog/write.do">写文章</a>
-									</dd>
-								</c:if>
-							</dl></li>
-					</ul>
+							</c:if>
+						</dl></li>
+				</ul>
 				</div>
 				<div class="searchFormdiv">
 					<form class=" layui-form searchForm">
