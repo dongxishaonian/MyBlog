@@ -127,6 +127,30 @@
 					</tr>
 				</thead>
 				<tbody>
+					<c:forEach varStatus="status" items="${topArticles}" var="article">
+						<tr>
+							<td style="width: 5px;">置顶</td>
+							<td>${article.title}</td>
+							<td>${article.readingVolume}</td>
+							<td><fmt:formatDate type="date"
+									value="${article.releaseDate}" /></td>
+							<td>
+								<form class="layui-form layui-form-pane" action="">
+									<select name="city" lay-verify="">
+										<option value="">设置状态</option>
+										<option value="010">北京</option>
+										<option value="021">上海</option>
+										<option value="0571">杭州</option>
+										<option value="">&nbsp;</option>
+									</select>
+								</form>
+							</td>
+							<td>编辑|分类|<a class="top_article"
+								href="/MyBlog/untop.do?articleType=${articleType}&untopId=${article.id}">取消置顶</a>|<a
+								id="${article.id}" class="delete_article"
+								href="javascript:void(0)">删除</a></td>
+						</tr>
+					</c:forEach>
 					<c:forEach varStatus="status" items="${allArticles}" var="article">
 						<tr>
 							<td style="width: 5px;">${status.count}</td>
@@ -145,7 +169,10 @@
 									</select>
 								</form>
 							</td>
-							<td>编辑|分类|置顶|<a id="${article.id}" class="delete_article" href="javascript:void(0)">删除</a></td>
+							<td>编辑|分类|<a class="top_article"
+								href="/MyBlog/top.do?articleType=${articleType}&topId=${article.id}">置顶</a>|<a
+								id="${article.id}" class="delete_article"
+								href="javascript:void(0)">删除</a></td>
 						</tr>
 					</c:forEach>
 
@@ -204,22 +231,28 @@
 		});
 	</script>
 	<script type="text/javascript">
-	$(".delete_article").click(function() {
-		var delete_id = $(this).attr("id");
-		$.confirm({
-			title: '注意!',
-		    content: '是否要删除本文章!',
-		    useBootstrap: false,
-		    buttons: {
-		        继续: function () {
-		        	var articleType = "${articleType}";
-		        	window.location.href="/MyBlog/delete.do?articleType="+articleType+"&deleteId="+delete_id;
-		        },
-		        取消: function () {
-		        }
-		    }
-		});
-	})
+		$(".delete_article")
+				.click(
+						function() {
+							var delete_id = $(this).attr("id");
+							$
+									.confirm({
+										title : '注意!',
+										content : '是否要删除本文章!',
+										useBootstrap : false,
+										buttons : {
+											继续 : function() {
+												var articleType = "${articleType}";
+												window.location.href = "/MyBlog/delete.do?articleType="
+														+ articleType
+														+ "&deleteId="
+														+ delete_id;
+											},
+											取消 : function() {
+											}
+										}
+									});
+						})
 	</script>
 </body>
 

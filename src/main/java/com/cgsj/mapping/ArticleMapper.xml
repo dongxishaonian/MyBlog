@@ -4,22 +4,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cgsj.dao.ArticleDao">
 
-	<!-- <resultMap type="BlogUser" id="BlogUserResult">
-		<result property="id" column="id"/>
-		<result property="username" column="username"/>
-		<result property="password" column="password"/>
-	</resultMap> -->
-	
-	<select id="gainAll"  resultType="BlogArticle">
+
+	<select id="gainAll" resultType="BlogArticle">
 		select * from blog_article
 	</select>
 
-	<select id="gainByType" parameterType="java.lang.String" resultType="com.cgsj.entity.BlogArticle">
-		select * from blog_article where ArticleType = #{articleType}
+	<select id="gainByType" parameterType="java.lang.String"
+		resultType="com.cgsj.entity.BlogArticle">
+		select * from blog_article where ArticleType =
+		#{articleType}
 	</select>
-	
+
 	<delete id="deletebyId" parameterType="int">
-		delete from blog_article where id = #{id}
+		delete from blog_article
+		where id = #{id}
 	</delete>
-	
+
+	<update id="topbyId" parameterType="int">
+		update blog_article set
+		stickTop = '1'
+		where id = #{id}
+	</update>
+
+	<update id="untopbyId" parameterType="int">
+		update blog_article set
+		stickTop = '0'
+		where id = #{id}
+	</update>
+
 </mapper> 
