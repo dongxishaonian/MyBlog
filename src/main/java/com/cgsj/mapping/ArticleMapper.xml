@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.cgsj.dao.ArticleDao">
 
 
-	<select id="gainAll" resultType="BlogArticle">
+	<select id="gainAll" resultType="com.cgsj.entity.BlogArticle">
 		select * from blog_article
 	</select>
 
