@@ -10,6 +10,7 @@ public class BlogArticle {
 	private Integer articleStatus;
 	private Date releaseDate;
 	private Integer readingVolume;
+	private Integer stickTop;
 
 	public Integer getId() {
 		return id;
@@ -58,6 +59,13 @@ public class BlogArticle {
 	public void setReadingVolume(Integer readingVolume) {
 		this.readingVolume = readingVolume;
 	}
-	
 
+	public Integer getStickTop() {
+		return stickTop;
+	}
+
+	public void setStickTop(Integer stickTop) {
+		this.stickTop = stickTop;
+	}
+	
 }

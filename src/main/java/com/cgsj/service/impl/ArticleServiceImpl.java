@@ -15,6 +15,7 @@ public class ArticleServiceImpl implements ArticleService {
 
 	@Resource
 	private ArticleDao articleDao;
+
 	@Override
 	public ArrayList<BlogArticle> gainAll() {
 		return articleDao.gainAll();
@@ -29,7 +30,15 @@ public class ArticleServiceImpl implements ArticleService {
 	public int deletebyId(Integer id) {
 		return articleDao.deletebyId(id);
 	}
-	
-	
+
+	@Override
+	public int topbyId(Integer id) {
+		return articleDao.topbyId(id);
+	}
+
+	@Override
+	public int untopbyId(Integer id) {
+		return articleDao.untopbyId(id);
+	}
 
 }
