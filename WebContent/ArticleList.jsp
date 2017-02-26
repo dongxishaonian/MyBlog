@@ -125,8 +125,6 @@
 						<th>状态设置</th>
 						<th>操作</th>
 					</tr>
-				</thead>
-				<tbody>
 					<c:forEach varStatus="status" items="${topArticles}" var="article">
 						<tr>
 							<td style="width: 5px;">置顶</td>
@@ -151,6 +149,8 @@
 								href="javascript:void(0)">删除</a></td>
 						</tr>
 					</c:forEach>
+				</thead>
+				<tbody id="page_Information">
 					<c:forEach varStatus="status" items="${allArticles}" var="article">
 						<tr>
 							<td style="width: 5px;">${status.count}</td>
@@ -175,7 +175,6 @@
 								href="javascript:void(0)">删除</a></td>
 						</tr>
 					</c:forEach>
-
 				</tbody>
 			</table>
 			<div style="background-color: #F6F6F6;" id="demo7"></div>
@@ -191,8 +190,7 @@
 		</div>
 	</div>
 	<script type="text/javascript">
-		layui
-				.use(
+		layui.use(
 						[ 'form', 'layedit', 'laydate' ],
 						function() {
 							var form = layui.form(), layer = layui.layer, layedit = layui.layedit, laydate = layui.laydate;
@@ -220,15 +218,38 @@
 								})
 								return false;
 							});
+							form.render('select');
 						});
-		layui.use([ 'laypage', 'layer' ], function() {
-			var laypage = layui.laypage, layer = layui.layer;
-			laypage({
-				cont : 'demo7',
-				pages : 100,
-				skip : true
-			});
-		});
+		layui
+				.use(
+						[ 'laypage', 'layer' ],
+						function() {
+							var laypage = layui.laypage, layer = layui.layer;
+							laypage({
+								cont : 'demo7',
+								pages : "${indexSum}",
+								skip : true,
+								jump : function(obj, first) {
+									$("#page_Information").empty();
+									var articleType = "${articleType}";
+									$.ajax({
+												url : "/MyBlog/page.do",
+												type : "post",
+												dataType:"html",
+												contentType : "application/x-www-form-urlencoded; charset=utf-8",
+												timeout : 6000,
+												data : {
+													"page" : obj.curr,
+													"articleType" : articleType
+												},
+												success : function(msg) {
+													$("#page_Information").append(msg);
+													form.render('select'); 
+												}
+											})
+								}
+							});
+						});
 	</script>
 	<script type="text/javascript">
 		$(".delete_article")
