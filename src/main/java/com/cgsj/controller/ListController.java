@@ -30,14 +30,23 @@ public class ListController {
 		List<BlogArticle> allArticles = new ArrayList<>();
 		List<BlogArticle> topArticles = new ArrayList<>();
 		PageInfo<BlogArticle> page = new PageInfo<>();
+		int curr = 1;
+		if(request.getParameter("page")!=null){
+			curr = Integer.parseInt(request.getParameter("page"));
+		}
+		
 		PageHelper.startPage(1, 10);
 		allArticles = articleService.gainByType(articleType);
 		page = new PageInfo<BlogArticle>(allArticles);
+		if(curr >= page.getPages()){
+			curr = page.getPages();
+		}
 		topArticles = articleService.topByType(articleType);
 		request.setAttribute("topArticles", topArticles);
-		request.setAttribute("allArticles", allArticles);
+//		request.setAttribute("allArticles", allArticles);
 		request.setAttribute("indexSum", page.getPages());
 		request.setAttribute("articleType", articleType);
+		request.setAttribute("curr",curr);
 		return "ArticleList";
 	}
 
@@ -48,6 +57,7 @@ public class ListController {
 		String data = "";
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 		int pageindex = Integer.parseInt(request.getParameter("page"));
+		System.out.println("pageindex的值为："+pageindex);
 		String articleType = request.getParameter("articleType");
 		PageHelper.startPage(pageindex, 10);
 		allArticles = articleService.gainByType(articleType);
@@ -82,7 +92,7 @@ public class ListController {
 	public String Dalete(@RequestParam("deleteId") int deleteId, @RequestParam("articleType") String articleType,
 			HttpServletRequest request) {
 		articleService.deletebyId(deleteId);
-		return "redirect:/list.do?articleType=" + articleType;
+		return "redirect:/list.do?articleType=" + articleType+"&page="+request.getParameter("page");
 	}
 
 	@RequestMapping("/top")

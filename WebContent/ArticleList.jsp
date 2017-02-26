@@ -144,7 +144,7 @@
 								</form>
 							</td>
 							<td>编辑|分类|<a class="top_article"
-								href="/MyBlog/untop.do?articleType=${articleType}&untopId=${article.id}">取消置顶</a>|<a
+								href="/MyBlog/untop.do?articleType=${articleType}&amp;untopId=${article.id}">取消置顶</a>|<a
 								id="${article.id}" class="delete_article"
 								href="javascript:void(0)">删除</a></td>
 						</tr>
@@ -170,7 +170,7 @@
 								</form>
 							</td>
 							<td>编辑|分类|<a class="top_article"
-								href="/MyBlog/top.do?articleType=${articleType}&topId=${article.id}">置顶</a>|<a
+								href="/MyBlog/top.do?articleType=${articleType}&amp;topId=${article.id}">置顶</a>|<a
 								id="${article.id}" class="delete_article"
 								href="javascript:void(0)">删除</a></td>
 						</tr>
@@ -190,27 +190,11 @@
 		</div>
 	</div>
 	<script type="text/javascript">
-		layui.use(
+		layui
+				.use(
 						[ 'form', 'layedit', 'laydate' ],
 						function() {
 							var form = layui.form(), layer = layui.layer, layedit = layui.layedit, laydate = layui.laydate;
-
-							//创建一个编辑器
-							var editIndex = layedit.build('LAY_demo_editor');
-
-							//自定义验证规则
-							form.verify({
-								title : function(value) {
-									if (value.length < 5) {
-										return '标题至少得5个字符啊';
-									}
-								},
-								pass : [ /(.+){6,12}$/, '密码必须6到12位' ],
-								content : function(value) {
-									layedit.sync(editIndex);
-								}
-							});
-
 							//监听提交
 							form.on('submit(demo1)', function(data) {
 								layer.alert(JSON.stringify(data.field), {
@@ -218,7 +202,6 @@
 								})
 								return false;
 							});
-							form.render('select');
 						});
 		layui
 				.use(
@@ -229,13 +212,14 @@
 								cont : 'demo7',
 								pages : "${indexSum}",
 								skip : true,
+								curr:"${curr}",
 								jump : function(obj, first) {
 									$("#page_Information").empty();
 									var articleType = "${articleType}";
 									$.ajax({
 												url : "/MyBlog/page.do",
 												type : "post",
-												dataType:"html",
+												dataType : "html",
 												contentType : "application/x-www-form-urlencoded; charset=utf-8",
 												timeout : 6000,
 												data : {
@@ -245,29 +229,29 @@
 												success : function(msg) {
 													$("#page_Information").append(msg);
 													var form = layui.form(), layer = layui.layer, layedit = layui.layedit, laydate = layui.laydate;
-													form.render('select'); 
-													$(".delete_article")
-													.click(
-															function() {
-																var delete_id = $(this).attr("id");
-																$
-																		.confirm({
-																			title : '注意!',
-																			content : '是否要删除本文章!',
-																			useBootstrap : false,
-																			buttons : {
-																				继续 : function() {
-																					var articleType = "${articleType}";
-																					window.location.href = "/MyBlog/delete.do?articleType="
-																							+ articleType
-																							+ "&deleteId="
-																							+ delete_id;
-																				},
-																				取消 : function() {
-																				}
-																			}
-																		});
-															})
+													form.render('select');
+													$(".delete_article").click(
+																	function() {
+																		var delete_id = $(this).attr("id");
+																		$.confirm({
+																					title : '注意!',
+																					content : '是否要删除本文章!',
+																					useBootstrap : false,
+																					buttons : {
+																						继续 : function() {
+																							var articleType = "${articleType}";
+																							window.location.href = "/MyBlog/delete.do?articleType="
+																									+ articleType
+																									+ "&deleteId="
+																									+ delete_id
+																									+"&page="
+																									+obj.curr;
+																						},
+																						取消 : function() {
+																						}
+																					}
+																				});
+																	})
 												}
 											})
 								}
