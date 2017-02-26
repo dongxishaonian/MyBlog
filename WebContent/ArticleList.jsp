@@ -244,36 +244,35 @@
 												},
 												success : function(msg) {
 													$("#page_Information").append(msg);
+													var form = layui.form(), layer = layui.layer, layedit = layui.layedit, laydate = layui.laydate;
 													form.render('select'); 
+													$(".delete_article")
+													.click(
+															function() {
+																var delete_id = $(this).attr("id");
+																$
+																		.confirm({
+																			title : '注意!',
+																			content : '是否要删除本文章!',
+																			useBootstrap : false,
+																			buttons : {
+																				继续 : function() {
+																					var articleType = "${articleType}";
+																					window.location.href = "/MyBlog/delete.do?articleType="
+																							+ articleType
+																							+ "&deleteId="
+																							+ delete_id;
+																				},
+																				取消 : function() {
+																				}
+																			}
+																		});
+															})
 												}
 											})
 								}
 							});
 						});
-	</script>
-	<script type="text/javascript">
-		$(".delete_article")
-				.click(
-						function() {
-							var delete_id = $(this).attr("id");
-							$
-									.confirm({
-										title : '注意!',
-										content : '是否要删除本文章!',
-										useBootstrap : false,
-										buttons : {
-											继续 : function() {
-												var articleType = "${articleType}";
-												window.location.href = "/MyBlog/delete.do?articleType="
-														+ articleType
-														+ "&deleteId="
-														+ delete_id;
-											},
-											取消 : function() {
-											}
-										}
-									});
-						})
 	</script>
 </body>
 
