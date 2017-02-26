@@ -2,6 +2,8 @@ package com.cgsj.dao;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.session.RowBounds;
+
 import com.cgsj.entity.BlogArticle;
 
 public interface ArticleDao {
@@ -10,7 +12,13 @@ public interface ArticleDao {
 	public ArrayList<BlogArticle> gainAll();
 
 	// 获取指定类型文章
+	public ArrayList<BlogArticle> gainByType(String articleType,RowBounds rowBounds);
 	public ArrayList<BlogArticle> gainByType(String articleType);
+	
+	
+	//获取指定类型置顶文章
+	public ArrayList<BlogArticle> topByType(String articleType);
+	
 
 	// 删除指定文章
 	public int deletebyId(Integer id);

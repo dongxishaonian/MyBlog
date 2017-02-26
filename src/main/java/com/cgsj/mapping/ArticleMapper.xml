@@ -6,14 +6,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 	<select id="gainAll" resultType="com.cgsj.entity.BlogArticle">
-		select * from blog_article
+		select * from blog_article order by id
 	</select>
 
 	<select id="gainByType" parameterType="java.lang.String"
 		resultType="com.cgsj.entity.BlogArticle">
 		select * from blog_article where ArticleType =
-		#{articleType}
+		#{articleType} and stickTop != 1
 	</select>
+	
+	<select id="topByType" parameterType="java.lang.String"
+		resultType="com.cgsj.entity.BlogArticle">
+		select * from blog_article where ArticleType =
+		#{articleType} and stickTop = 1
+	</select>
+	
 
 	<delete id="deletebyId" parameterType="int">
 		delete from blog_article
