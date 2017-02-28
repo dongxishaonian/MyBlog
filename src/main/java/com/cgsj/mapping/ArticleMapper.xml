@@ -4,6 +4,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cgsj.dao.ArticleDao">
 
+	 <resultMap type="com.cgsj.entity.BlogArticle" id="ArticleresultMap">
+		<id column="id" property="id"/>
+		<result column="title" property="title"/>
+		<result column="articleType" property="articleType"/>
+		<result column="articleStatus" property="articleStatus"/>
+		<result column="releaseDate" property="releaseDate"/>
+		<result column="readingVolume" property="readingVolume"/>
+		<result column="stickTop" property="stickTop"/>
+	</resultMap>
+
+	<parameterMap type="com.cgsj.entity.BlogArticle" id="ArticleParameterMap">
+		<parameter property="id" resultMap="ArticleresultMap"/>
+		<parameter property="articleType" resultMap="ArticleresultMap"/>
+	</parameterMap> 
 
 	<select id="gainAll" resultType="com.cgsj.entity.BlogArticle">
 		select * from blog_article order by id
@@ -37,6 +51,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update blog_article set
 		stickTop = '0'
 		where id = #{id}
+	</update>
+	
+	<update id="classIficat" parameterMap="ArticleParameterMap">
+		update blog_article set
+		articleType = #{0}
+		where id = #{1}
 	</update>
 
 </mapper> 
