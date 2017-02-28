@@ -52,4 +52,9 @@ public class ArticleServiceImpl implements ArticleService {
 		return articleDao.gainByType(articleType);
 	}
 
+	@Override
+	public int classIficat(String articleType, Integer id) {
+		return articleDao.classIficat(articleType, id);
+	}
+
 }

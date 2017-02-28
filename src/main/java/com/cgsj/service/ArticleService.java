@@ -12,6 +12,7 @@ public interface ArticleService {
 
 	// 获取指定类型文章
 	public ArrayList<BlogArticle> gainByType(String articleType, RowBounds rowBounds);
+
 	public ArrayList<BlogArticle> gainByType(String articleType);
 
 	// 获取指定类型置顶文章
@@ -25,4 +26,7 @@ public interface ArticleService {
 
 	// 取消置顶文章
 	public int untopbyId(Integer id);
+
+	// 改变文章分类
+	public int classIficat(String articleType, Integer id);
 }

@@ -28,5 +28,8 @@ public interface ArticleDao {
 
 	// 取消置顶文章
 	public int untopbyId(Integer id);
+	
+	//改变文章分类
+	public int  classIficat(String articleType,Integer id);
 
 }

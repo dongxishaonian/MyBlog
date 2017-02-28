@@ -143,8 +143,9 @@
 									</select>
 								</form>
 							</td>
-							<td>编辑|分类|<a class="top_article"
-								href="/MyBlog/untop.do?articleType=${articleType}&untopId=${article.id}">取消置顶</a>|<a
+							<td>编辑|<a id="${article.id}" href="javascript:void(0)" data-method="offset"
+								data-type="auto" class="layer_btn">分类</a>|<a class="top_article"
+								href="/MyBlog/untop.do?articleType=${articleType}&untopId=${article.id}&page=${curr}">取消置顶</a>|<a
 								id="${article.id}" class="delete_article"
 								href="javascript:void(0)">删除</a></td>
 						</tr>
@@ -169,8 +170,9 @@
 									</select>
 								</form>
 							</td>
-							<td>编辑|分类|<a class="top_article"
-								href="/MyBlog/top.do?articleType=${articleType}&topId=${article.id}">置顶</a>|<a
+							<td>编辑|<a id="${article.id}" href="javascript:void(0)" data-method="offset"
+								data-type="auto" class="layer_btn">分类</a>|<a class="top_article"
+								href="/MyBlog/top.do?articleType=${articleType}&amp;topId=${article.id}&page=${curr}">置顶</a>|<a
 								id="${article.id}" class="delete_article"
 								href="javascript:void(0)">删除</a></td>
 						</tr>
@@ -190,27 +192,12 @@
 		</div>
 	</div>
 	<script type="text/javascript">
-		layui.use(
+		//layui表单
+		layui
+				.use(
 						[ 'form', 'layedit', 'laydate' ],
 						function() {
 							var form = layui.form(), layer = layui.layer, layedit = layui.layedit, laydate = layui.laydate;
-
-							//创建一个编辑器
-							var editIndex = layedit.build('LAY_demo_editor');
-
-							//自定义验证规则
-							form.verify({
-								title : function(value) {
-									if (value.length < 5) {
-										return '标题至少得5个字符啊';
-									}
-								},
-								pass : [ /(.+){6,12}$/, '密码必须6到12位' ],
-								content : function(value) {
-									layedit.sync(editIndex);
-								}
-							});
-
 							//监听提交
 							form.on('submit(demo1)', function(data) {
 								layer.alert(JSON.stringify(data.field), {
@@ -218,33 +205,119 @@
 								})
 								return false;
 							});
-							form.render('select');
 						});
+
+		//layui分页与弹出层
 		layui
 				.use(
 						[ 'laypage', 'layer' ],
 						function() {
 							var laypage = layui.laypage, layer = layui.layer;
+							var $ = layui.jquery;
+							//初始化弹出层窗口
+							var active = {
+								offset : function(othis) {
+									var type = othis.data('type'), text = othis
+											.text();
+									var id = othis.attr('id');
+									layer
+											.open({
+												type : 1,
+												title : '文章分类',
+												area : [ '500px', '400px' ],
+												//offset:type,
+												id : 'LAY_DEMO' + type,
+												content : '<form id="'+id+'" class="layui-form layui-form-pane tanchuang" action="/MyBlog/classIficat.do?page=${curr}&classId='+id+'" method="post"><select name="articleType" lay-verify=""><option value="">设置状态</option><option value="design ">设计</option><option value="front-end">前端</option><option value="back-end">后端</option><option value="tool">工具资源</option><option value="bugRecord">bug记录</option><option value="experience">经验总结</option></select></form>',
+												btn : [ 'yes', 'no' ],
+												shade : [ 0.8, '#000' ],
+												btnAlign : 'c', //按钮居中
+												yes : function() {
+													$(".tanchuang").submit();
+												},
+												btn2 : function() {
+													alert('no');
+												},
+												cancel : function() {
+													layer.closeAll();
+												}
+											})
+
+								}
+							};
+							//初始化分页参数
 							laypage({
 								cont : 'demo7',
 								pages : "${indexSum}",
 								skip : true,
+								curr : "${curr}",
 								jump : function(obj, first) {
 									$("#page_Information").empty();
 									var articleType = "${articleType}";
-									$.ajax({
+									//ajax获取页面内容
+									$
+											.ajax({
 												url : "/MyBlog/page.do",
 												type : "post",
-												dataType:"html",
+												dataType : "html",
 												contentType : "application/x-www-form-urlencoded; charset=utf-8",
 												timeout : 6000,
 												data : {
 													"page" : obj.curr,
 													"articleType" : articleType
 												},
+												//获取成功，为页面新添加元素初始化
 												success : function(msg) {
-													$("#page_Information").append(msg);
-													form.render('select'); 
+													$("#page_Information")
+															.append(msg);
+													var form = layui
+													.form(), layer = layui.layer, layedit = layui.layedit, laydate = layui.laydate;
+											form
+													.render('select');
+													//弹出层
+													$('.layer_btn')
+															.on(
+																	'click',
+																	function() {
+																		var othis = $(this), method = othis
+																				.data('method');
+																		active[method] ? active[method]
+																				.call(
+																						this,
+																						othis)
+																				: '';
+																		var form = layui
+																				.form(), layer = layui.layer, layedit = layui.layedit, laydate = layui.laydate;
+																		form
+																				.render('select');
+																	});
+													//删除行为
+													$(".delete_article")
+															.click(
+																	function() {
+																		var delete_id = $(
+																				this)
+																				.attr(
+																						"id");
+																		$
+																				.confirm({
+																					title : '注意!',
+																					content : '是否要删除本文章!',
+																					useBootstrap : false,
+																					buttons : {
+																						继续 : function() {
+																							var articleType = "${articleType}";
+																							window.location.href = "/MyBlog/delete.do?articleType="
+																									+ articleType
+																									+ "&deleteId="
+																									+ delete_id
+																									+ "&page="
+																									+ obj.curr;
+																						},
+																						取消 : function() {
+																						}
+																					}
+																				});
+																	})
 												}
 											})
 								}
@@ -252,27 +325,52 @@
 						});
 	</script>
 	<script type="text/javascript">
-		$(".delete_article")
-				.click(
-						function() {
-							var delete_id = $(this).attr("id");
-							$
-									.confirm({
-										title : '注意!',
-										content : '是否要删除本文章!',
-										useBootstrap : false,
-										buttons : {
-											继续 : function() {
-												var articleType = "${articleType}";
-												window.location.href = "/MyBlog/delete.do?articleType="
-														+ articleType
-														+ "&deleteId="
-														+ delete_id;
-											},
-											取消 : function() {
-											}
-										}
-									});
+		layui
+				.use(
+						'layer',
+						function() { //独立版的layer无需执行这一句
+							var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
+							var active = {
+								offset : function(othis) {
+									var type = othis.data('type'), text = othis
+											.text();
+									var id = othis.attr('id');
+									layer
+											.open({
+												type : 1,
+												title : '文章分类',
+												area : [ '500px', '400px' ],
+												//offset:type,
+												id : 'LAY_DEMO' + type,
+												content : '<form id="'+id+'"  class="layui-form layui-form-pane tanchuang" action="/MyBlog/classIficat.do?page=${curr}&classId='+id+'" method="post"><select name="articleType" lay-verify=""><option value="">分类设置</option><option value="design ">设计</option><option value="front-end">前端</option><option value="back-end">后端</option><option value="tool">工具资源</option><option value="bugRecord">bug记录</option><option value="experience">经验总结</option></select></form>',
+												btn : [ 'yes', 'no' ],
+												shade : [ 0.8, '#000' ],
+												btnAlign : 'c', //按钮居中
+												yes : function() {
+													//alert($(".tanchuang").attr("action"));
+													$(".tanchuang").submit();
+												},
+												btn2 : function() {
+													alert('no');
+												},
+												cancel : function() {
+													layer.closeAll();
+												}
+											})
+
+								}
+							};
+							$('.layer_btn')
+									.on(
+											'click',
+											function() {
+												var othis = $(this), method = othis
+														.data('method');
+												active[method] ? active[method]
+														.call(this, othis) : '';
+												var form = layui.form(), layer = layui.layer, layedit = layui.layedit, laydate = layui.laydate;
+												form.render('select');
+											});
 						})
 	</script>
 </body>

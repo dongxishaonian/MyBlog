@@ -30,14 +30,23 @@ public class ListController {
 		List<BlogArticle> allArticles = new ArrayList<>();
 		List<BlogArticle> topArticles = new ArrayList<>();
 		PageInfo<BlogArticle> page = new PageInfo<>();
+		int curr = 1;
+		if(request.getParameter("page")!=null){
+			curr = Integer.parseInt(request.getParameter("page"));
+		}
+		
 		PageHelper.startPage(1, 10);
 		allArticles = articleService.gainByType(articleType);
 		page = new PageInfo<BlogArticle>(allArticles);
+		if(curr >= page.getPages()){
+			curr = page.getPages();
+		}
 		topArticles = articleService.topByType(articleType);
 		request.setAttribute("topArticles", topArticles);
-		request.setAttribute("allArticles", allArticles);
+//		request.setAttribute("allArticles", allArticles);
 		request.setAttribute("indexSum", page.getPages());
 		request.setAttribute("articleType", articleType);
+		request.setAttribute("curr",curr);
 		return "ArticleList";
 	}
 
@@ -48,6 +57,7 @@ public class ListController {
 		String data = "";
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 		int pageindex = Integer.parseInt(request.getParameter("page"));
+		System.out.println("pageindex的值为："+pageindex);
 		String articleType = request.getParameter("articleType");
 		PageHelper.startPage(pageindex, 10);
 		allArticles = articleService.gainByType(articleType);
@@ -63,8 +73,8 @@ public class ListController {
 					+ "<select name=\"city\" lay-verify=\"\">" + "<option value=\"\">设置状态</option>"
 					+ "<option value=\"020\">状态</option>" + "<option value=\"010\">设置</option>"
 					+ "<option value=\"0571\">设态</option>" + "<option value=\"\">&nbsp;</option>" + "</select>" + "</form>" + "</td>" + "<td>"
-					+ "编辑|分类|<a class=\"top_article\"  href=\"/MyBlog/top.do?articleType="
-					+ allArticles.get(i - 1).getArticleType() + "&topId=" + allArticles.get(i - 1).getId() + "\""
+					+ "编辑|<a id=\""+allArticles.get(i-1).getId()+"\" href=\"javascript:void(0)\" data-method=\"offset\" data-type=\"auto\" class=\"layer_btn\">分类</a>|<a class=\"top_article\"  href=\"/MyBlog/top.do?articleType="
+					+ allArticles.get(i - 1).getArticleType() + "&topId=" + allArticles.get(i - 1).getId() + "&page="+pageindex+"\""
 					+ ">置顶</a>|<a id=" + "\"" + allArticles.get(i - 1).getId() + "\""
 					+ " class=\"delete_article\"  href=\"javascript:void(0)\">删除</a>" + "</td>" + "</tr>";
 		}
@@ -82,21 +92,30 @@ public class ListController {
 	public String Dalete(@RequestParam("deleteId") int deleteId, @RequestParam("articleType") String articleType,
 			HttpServletRequest request) {
 		articleService.deletebyId(deleteId);
-		return "redirect:/list.do?articleType=" + articleType;
+		return "redirect:/list.do?articleType=" + articleType+"&page="+request.getParameter("page");
 	}
 
 	@RequestMapping("/top")
 	public String Top(@RequestParam("topId") int topId, @RequestParam("articleType") String articleType,
 			HttpServletRequest request) {
 		articleService.topbyId(topId);
-		return "redirect:/list.do?articleType=" + articleType;
+		return "redirect:/list.do?articleType=" + articleType+"&page="+request.getParameter("page");
 	}
 
 	@RequestMapping("/untop")
 	public String unTop(@RequestParam("untopId") int untopId, @RequestParam("articleType") String articleType,
 			HttpServletRequest request) {
 		articleService.untopbyId(untopId);
-		return "redirect:/list.do?articleType=" + articleType;
+		return "redirect:/list.do?articleType=" + articleType+"&page="+request.getParameter("page");
+	}
+	
+	@RequestMapping("/classIficat")
+	public String classIficat(@RequestParam("classId")int classId,@RequestParam("articleType") String articleType,HttpServletRequest request){
+		System.out.println(classId);
+		System.out.println(articleType);
+		System.out.println(request.getParameter("articleType"));
+		articleService.classIficat(articleType, classId);
+		return "redirect:/list.do?articleType=" + articleType+"&page="+request.getParameter("page");
 	}
 
 }
