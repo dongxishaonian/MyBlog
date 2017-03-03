@@ -7,6 +7,9 @@ import org.apache.ibatis.session.RowBounds;
 import com.cgsj.entity.BlogArticle;
 
 public interface ArticleDao {
+	
+	//获取指定文章
+	public BlogArticle getOne(Integer id);
 
 	// 获取数据库所有文章
 	public ArrayList<BlogArticle> gainAll();
@@ -31,5 +34,8 @@ public interface ArticleDao {
 	
 	//改变文章分类
 	public int  classIficat(String articleType,Integer id);
+	
+	//添加新文章
+	public int  addArticle(BlogArticle blogArticle);
 
 }

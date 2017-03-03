@@ -57,4 +57,15 @@ public class ArticleServiceImpl implements ArticleService {
 		return articleDao.classIficat(articleType, id);
 	}
 
+	@Override
+	public int addArticle(BlogArticle blogArticle) {
+		return articleDao.addArticle(blogArticle);
+	}
+
+	@Override
+	public BlogArticle getOne(Integer id) {
+		
+		return articleDao.getOne(id) ;
+	}
+
 }
