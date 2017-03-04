@@ -100,7 +100,7 @@
 		<ul>
 			<li>${blogArticle.title}</li>
 		</ul>
-		<button id="release" data-method="offset" data-type="auto"
+		<button id="return_key" data-method="offset" data-type="auto"
 			class="layui-btn ">返回</button>
 	</div>
 	<div id="editormd">
@@ -155,5 +155,10 @@
 							});
 						}, "text");
 	});
+</script>
+<script type="text/javascript">
+	$("#return_key").click(function() {
+		window.location.href="/MyBlog/list.do?articleType=${blogArticle.articleType}";
+	})
 </script>
 </html>

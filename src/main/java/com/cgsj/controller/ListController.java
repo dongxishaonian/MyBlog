@@ -43,7 +43,6 @@ public class ListController {
 		}
 		topArticles = articleService.topByType(articleType);
 		request.setAttribute("topArticles", topArticles);
-//		request.setAttribute("allArticles", allArticles);
 		request.setAttribute("indexSum", page.getPages());
 		request.setAttribute("articleType", articleType);
 		request.setAttribute("curr",curr);
