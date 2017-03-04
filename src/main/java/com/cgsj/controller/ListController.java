@@ -69,7 +69,7 @@ public class ListController {
 			System.out.println(dateFormat.format(allArticles.get(i - 1).getReleaseDate()));
 			data += "<tr>" + "<td>" + i + "</td>"
 					+ "<td><a href=\"/MyBlog/readPad.do?articleType="+articleType+"&articleId="+ allArticles.get(i - 1).getId()+"&page="+pageindex+"\""
-					+ " data-method=\"offset\" data-type=\"auto\" class=\"layer_btn\">"+allArticles.get(i - 1).getTitle()+" </a></td>" + "<td>"
+					+ " data-method=\"offset\" data-type=\"auto\" class=\"\">"+allArticles.get(i - 1).getTitle()+" </a></td>" + "<td>"
 					+ allArticles.get(i - 1).getReadingVolume() + "</td>" + "<td>"
 					+ dateFormat.format(allArticles.get(i - 1).getReleaseDate()) + "</td>";
 			if (session.getAttribute("username") != null || session.getAttribute("username") == "admin") {

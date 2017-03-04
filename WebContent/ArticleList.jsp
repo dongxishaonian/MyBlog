@@ -127,7 +127,7 @@
 							<td style="width: 5px;">置顶</td>
 							<td><a
 								href="/MyBlog/readPad.do?articleType=${articleType}&articleId=${article.id}&page=${curr}"
-								data-method="offset" data-type="auto" class="layer_btn">${article.title}</a></td>
+								data-method="offset" data-type="auto" class="">${article.title}</a></td>
 							<td>${article.readingVolume}</td>
 							<td><fmt:formatDate type="date"
 									value="${article.releaseDate}" /></td>
@@ -176,7 +176,7 @@
 									</form>
 								</td>
 								<td>编辑|<a id="${article.id}" href="javascript:void(0)"
-									data-method="offset" data-type="auto" class="layer_btn">分类</a>|<a
+									data-method="offset" data-type="auto" class="">分类</a>|<a
 									class="top_article"
 									href="/MyBlog/top.do?articleType=${articleType}&amp;topId=${article.id}&page=${curr}">置顶</a>|<a
 									id="${article.id}" class="delete_article"
