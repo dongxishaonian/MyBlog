@@ -110,11 +110,11 @@
 		<hr />
 		<div class="ListContent">
 			<table class="layui-table" lay-even="" lay-skin="nob">
-				
+
 				<thead>
-					<tr >
+					<tr>
 						<th style="width: 5 px;"></th>
-						<th >标题</th>
+						<th>标题</th>
 						<th>阅读</th>
 						<th>日期</th>
 						<c:if test="${sessionScope.username eq 'admin'}">
@@ -125,7 +125,9 @@
 					<c:forEach varStatus="status" items="${topArticles}" var="article">
 						<tr>
 							<td style="width: 5px;">置顶</td>
-							<td>${article.title}</td>
+							<td><a
+								href="/MyBlog/readPad.do?articleType=${articleType}&articleId=${article.id}&page=${curr}"
+								data-method="offset" data-type="auto" class="layer_btn">${article.title}</a></td>
 							<td>${article.readingVolume}</td>
 							<td><fmt:formatDate type="date"
 									value="${article.releaseDate}" /></td>
@@ -155,9 +157,11 @@
 					<c:forEach varStatus="status" items="${allArticles}" var="article">
 						<tr>
 							<td style="width: 5px;">${status.count}</td>
-							<td>${article.title}</td>
+							<td><a
+								href="/MyBlog/readPad.do?articleType=${articleType}&articleId=${article.id}&page=${curr}"
+								data-method="offset" data-type="auto" class="layer_btn">${article.title}</a></td>
 							<td>${article.readingVolume}</td>
-							<td ><fmt:formatDate type="date"
+							<td><fmt:formatDate type="date"
 									value="${article.releaseDate}" /></td>
 							<c:if test="${sessionScope.username eq 'admin'}">
 								<td>

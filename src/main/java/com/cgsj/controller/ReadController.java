@@ -28,13 +28,13 @@ public class ReadController {
 	@RequestMapping("/readPad")
 	public String readPad(@RequestParam("articleType") String articleType, @RequestParam("articleId") int articleId,
 			HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		if (session.getAttribute("username") == null || session.getAttribute("username") == "") {
-			return "redirect:/login.do";
-		}
+//		HttpSession session = request.getSession();
+//		if (session.getAttribute("username") == null || session.getAttribute("username") == "") {
+//			return "redirect:/login.do";
+//		}
 		BlogArticle blogArticle = articleService.getOne(articleId);
 		request.setAttribute("blogArticle", blogArticle);
-	//	request.setAttribute("articleId", articleId);
+		request.setAttribute("page", request.getParameter("page"));
 		return "readPad";
 	}
 

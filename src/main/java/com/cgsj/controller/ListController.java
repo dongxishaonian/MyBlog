@@ -32,7 +32,7 @@ public class ListController {
 		List<BlogArticle> topArticles = new ArrayList<>();
 		PageInfo<BlogArticle> page = new PageInfo<>();
 		int curr = 1;
-		if (request.getParameter("page") != null) {
+		if (request.getParameter("page") != null||request.getParameter("page") =="") {
 			curr = Integer.parseInt(request.getParameter("page"));
 		}
 
@@ -67,8 +67,10 @@ public class ListController {
 		System.out.println("allArticle的长度：" + allArticles.size());
 		for (int i = 1; i <= allArticles.size(); i++) {
 			System.out.println(dateFormat.format(allArticles.get(i - 1).getReleaseDate()));
-			data += "<tr>" + "<td>" + i + "</td>" + "<td style=" + "\"width:5px;\">" + allArticles.get(i - 1).getTitle()
-					+ "</td>" + "<td>" + allArticles.get(i - 1).getReadingVolume() + "</td>" + "<td>"
+			data += "<tr>" + "<td>" + i + "</td>"
+					+ "<td><a href=\"/MyBlog/readPad.do?articleType="+articleType+"&articleId="+ allArticles.get(i - 1).getId()+"&page="+pageindex+"\""
+					+ " data-method=\"offset\" data-type=\"auto\" class=\"layer_btn\">"+allArticles.get(i - 1).getTitle()+" </a></td>" + "<td>"
+					+ allArticles.get(i - 1).getReadingVolume() + "</td>" + "<td>"
 					+ dateFormat.format(allArticles.get(i - 1).getReleaseDate()) + "</td>";
 			if (session.getAttribute("username") != null || session.getAttribute("username") == "admin") {
 				panduan = "<td>" + "<form class=" + "\"layui-form layui-form-pane\"" + " action=\" \" " + ">"

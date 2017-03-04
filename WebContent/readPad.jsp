@@ -157,8 +157,9 @@
 	});
 </script>
 <script type="text/javascript">
+	var page = "${page}";
 	$("#return_key").click(function() {
-		window.location.href="/MyBlog/list.do?articleType=${blogArticle.articleType}";
+		window.location.href="/MyBlog/list.do?articleType=${blogArticle.articleType}&page="+page;
 	})
 </script>
 </html>
