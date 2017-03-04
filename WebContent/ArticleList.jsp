@@ -110,20 +110,17 @@
 		<hr />
 		<div class="ListContent">
 			<table class="layui-table" lay-even="" lay-skin="nob">
-				<colgroup>
-					<col width="40">
-					<col width="150">
-					<col width="70">
-					<col>
-				</colgroup>
+				
 				<thead>
-					<tr>
+					<tr >
 						<th style="width: 5 px;"></th>
-						<th>标题</th>
+						<th >标题</th>
 						<th>阅读</th>
 						<th>日期</th>
-						<th>状态设置</th>
-						<th>操作</th>
+						<c:if test="${sessionScope.username eq 'admin'}">
+							<th>状态设置</th>
+							<th>操作</th>
+						</c:if>
 					</tr>
 					<c:forEach varStatus="status" items="${topArticles}" var="article">
 						<tr>
@@ -132,22 +129,25 @@
 							<td>${article.readingVolume}</td>
 							<td><fmt:formatDate type="date"
 									value="${article.releaseDate}" /></td>
-							<td>
-								<form class="layui-form layui-form-pane" action="">
-									<select name="city" lay-verify="">
-										<option value="">设置状态</option>
-										<option value="010">北京</option>
-										<option value="021">上海</option>
-										<option value="0571">杭州</option>
-										<option value="">&nbsp;</option>
-									</select>
-								</form>
-							</td>
-							<td>编辑|<a id="${article.id}" href="javascript:void(0)" data-method="offset"
-								data-type="auto" class="layer_btn">分类</a>|<a class="top_article"
-								href="/MyBlog/untop.do?articleType=${articleType}&untopId=${article.id}&page=${curr}">取消置顶</a>|<a
-								id="${article.id}" class="delete_article"
-								href="javascript:void(0)">删除</a></td>
+							<c:if test="${sessionScope.username eq 'admin'}">
+								<td>
+									<form class="layui-form layui-form-pane" action="">
+										<select name="city" lay-verify="">
+											<option value="">设置状态</option>
+											<option value="010">北京</option>
+											<option value="021">上海</option>
+											<option value="0571">杭州</option>
+											<option value="">&nbsp;</option>
+										</select>
+									</form>
+								</td>
+								<td>编辑|<a id="${article.id}" href="javascript:void(0)"
+									data-method="offset" data-type="auto" class="layer_btn">分类</a>|<a
+									class="top_article"
+									href="/MyBlog/untop.do?articleType=${articleType}&untopId=${article.id}&page=${curr}">取消置顶</a>|<a
+									id="${article.id}" class="delete_article"
+									href="javascript:void(0)">删除</a></td>
+							</c:if>
 						</tr>
 					</c:forEach>
 				</thead>
@@ -157,24 +157,27 @@
 							<td style="width: 5px;">${status.count}</td>
 							<td>${article.title}</td>
 							<td>${article.readingVolume}</td>
-							<td><fmt:formatDate type="date"
+							<td ><fmt:formatDate type="date"
 									value="${article.releaseDate}" /></td>
-							<td>
-								<form class="layui-form layui-form-pane" action="">
-									<select name="city" lay-verify="">
-										<option value="">设置状态</option>
-										<option value="010">北京</option>
-										<option value="021">上海</option>
-										<option value="0571">杭州</option>
-										<option value="">&nbsp;</option>
-									</select>
-								</form>
-							</td>
-							<td>编辑|<a id="${article.id}" href="javascript:void(0)" data-method="offset"
-								data-type="auto" class="layer_btn">分类</a>|<a class="top_article"
-								href="/MyBlog/top.do?articleType=${articleType}&amp;topId=${article.id}&page=${curr}">置顶</a>|<a
-								id="${article.id}" class="delete_article"
-								href="javascript:void(0)">删除</a></td>
+							<c:if test="${sessionScope.username eq 'admin'}">
+								<td>
+									<form class="layui-form layui-form-pane" action="">
+										<select name="city" lay-verify="">
+											<option value="">设置状态</option>
+											<option value="010">北京</option>
+											<option value="021">上海</option>
+											<option value="0571">杭州</option>
+											<option value="">&nbsp;</option>
+										</select>
+									</form>
+								</td>
+								<td>编辑|<a id="${article.id}" href="javascript:void(0)"
+									data-method="offset" data-type="auto" class="layer_btn">分类</a>|<a
+									class="top_article"
+									href="/MyBlog/top.do?articleType=${articleType}&amp;topId=${article.id}&page=${curr}">置顶</a>|<a
+									id="${article.id}" class="delete_article"
+									href="javascript:void(0)">删除</a></td>
+							</c:if>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -227,7 +230,11 @@
 												area : [ '500px', '400px' ],
 												//offset:type,
 												id : 'LAY_DEMO' + type,
-												content : '<form id="'+id+'" class="layui-form layui-form-pane tanchuang" action="/MyBlog/classIficat.do?page=${curr}&classId='+id+'" method="post"><select name="articleType" lay-verify=""><option value="">设置状态</option><option value="design ">设计</option><option value="front-end">前端</option><option value="back-end">后端</option><option value="tool">工具资源</option><option value="bugRecord">bug记录</option><option value="experience">经验总结</option></select></form>',
+												content : '<form id="'
+														+ id
+														+ '" class="layui-form layui-form-pane tanchuang" action="/MyBlog/classIficat.do?page=${curr}&classId='
+														+ id
+														+ '" method="post"><select name="articleType" lay-verify=""><option value="">设置状态</option><option value="design ">设计</option><option value="front-end">前端</option><option value="back-end">后端</option><option value="tool">工具资源</option><option value="bugRecord">bug记录</option><option value="experience">经验总结</option></select></form>',
 												btn : [ 'yes', 'no' ],
 												shade : [ 0.8, '#000' ],
 												btnAlign : 'c', //按钮居中
@@ -269,10 +276,8 @@
 												success : function(msg) {
 													$("#page_Information")
 															.append(msg);
-													var form = layui
-													.form(), layer = layui.layer, layedit = layui.layedit, laydate = layui.laydate;
-											form
-													.render('select');
+													var form = layui.form(), layer = layui.layer, layedit = layui.layedit, laydate = layui.laydate;
+													form.render('select');
 													//弹出层
 													$('.layer_btn')
 															.on(
@@ -342,7 +347,11 @@
 												area : [ '500px', '400px' ],
 												//offset:type,
 												id : 'LAY_DEMO' + type,
-												content : '<form id="'+id+'"  class="layui-form layui-form-pane tanchuang" action="/MyBlog/classIficat.do?page=${curr}&classId='+id+'" method="post"><select name="articleType" lay-verify=""><option value="">分类设置</option><option value="design ">设计</option><option value="front-end">前端</option><option value="back-end">后端</option><option value="tool">工具资源</option><option value="bugRecord">bug记录</option><option value="experience">经验总结</option></select></form>',
+												content : '<form id="'
+														+ id
+														+ '"  class="layui-form layui-form-pane tanchuang" action="/MyBlog/classIficat.do?page=${curr}&classId='
+														+ id
+														+ '" method="post"><select name="articleType" lay-verify=""><option value="">分类设置</option><option value="design ">设计</option><option value="front-end">前端</option><option value="back-end">后端</option><option value="tool">工具资源</option><option value="bugRecord">bug记录</option><option value="experience">经验总结</option></select></form>',
 												btn : [ 'yes', 'no' ],
 												shade : [ 0.8, '#000' ],
 												btnAlign : 'c', //按钮居中
@@ -374,5 +383,4 @@
 						})
 	</script>
 </body>
-
 </html>
