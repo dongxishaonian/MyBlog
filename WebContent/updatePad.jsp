@@ -200,7 +200,7 @@
 											content : '<div style="padding: 20px 100px;">'
 													+ '是否提交文章'
 													+ '</div>'
-													+ '<form   class="layui-form layui-form-pane tanchuang" action="/MyBlog/update.do" method="post">'
+													+ '<form   class="layui-form layui-form-pane tanchuang" action="/MyBlog/update.do?page=${page}" method="post">'
 													+ '<input type="hidden" name="articleType" value="'+articleType+'"></input>'
 													+ '<input type="hidden" name="articleId" value="'+articleId+'"></input>'
 													+ '<input type="hidden" name="textcontent" value="'+textcontent+'"></input>'
