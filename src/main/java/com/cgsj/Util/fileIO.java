@@ -23,6 +23,9 @@ public class fileIO {
 			textContent += "\n";
 		}
 		System.out.println("此为文章内容" + textContent);
+		br.close();
+		streamReader.close();
+		inputStream.close();
 		return textContent;
 	}
 
@@ -37,7 +40,7 @@ public class fileIO {
 			newfile.mkdir();
 		}
 		File newtext = new File("F:/MyBlog/" + articleType + "/" + articleId + ".txt");
-		if(!newtext.exists()){
+		if (!newtext.exists()) {
 			newtext.createNewFile();
 		}
 		FileOutputStream outputStream = new FileOutputStream(newtext);
@@ -48,7 +51,27 @@ public class fileIO {
 			System.out.println(appendString);
 			streamWriter.write(appendString);
 		}
+		stringReader.close();
 		streamWriter.close();
+		outputStream.close();
+		return 1;
+	}
+
+	// 删除保存在服务器的文件
+	public int deleteFile(String lastType, String articleType, int articleId) throws IOException {
+		File newfile = new File("F:/MyBlog/" + lastType);
+		File newtext;
+		String textContent = "";
+		fileIO fileIO = new fileIO();
+		// 删除出已有文件
+		if (newfile.exists()) {
+			newtext = new File("F:/MyBlog/" + lastType + "/" + articleId + ".txt");
+			if (newtext.exists()) {
+				textContent = fileIO.fileRead(newtext);
+				System.out.println("文件是否删除成功" + newtext.delete());
+			}
+		}
+		fileIO.fileWrite(textContent, articleType, articleId);
 		return 1;
 	}
 

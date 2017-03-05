@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.cgsj.Util.fileIO;
 import com.cgsj.entity.BlogArticle;
 import com.cgsj.service.ArticleService;
 import com.github.pagehelper.Page;
@@ -25,6 +26,7 @@ import java.util.List;
 public class ListController {
 	@Resource
 	private ArticleService articleService;
+	private fileIO fileio =new fileIO();
 
 	@RequestMapping("/list")
 	public String List(@RequestParam("articleType") String articleType, HttpServletRequest request) {
@@ -121,13 +123,14 @@ public class ListController {
 	}
 
 	@RequestMapping("/classIficat")
-	public String classIficat(@RequestParam("classId") int classId, @RequestParam("articleType") String articleType,
-			HttpServletRequest request) {
+	public String classIficat(@RequestParam("lastType") String lastType, @RequestParam("classId") int classId,
+			@RequestParam("articleType") String articleType, HttpServletRequest request) throws IOException {
 		System.out.println(classId);
 		System.out.println(articleType);
 		System.out.println(request.getParameter("articleType"));
 		articleService.classIficat(articleType, classId);
-		return "redirect:/list.do?articleType=" + articleType + "&page=" + request.getParameter("page");
+		fileio.deleteFile(lastType, articleType, classId);
+		return "redirect:/list.do?articleType=" + articleType ;
 	}
 
 }

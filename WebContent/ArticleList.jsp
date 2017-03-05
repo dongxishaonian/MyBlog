@@ -143,7 +143,8 @@
 										</select>
 									</form>
 								</td>
-								<td><a href="/MyBlog/updatePad.do?articleType=${articleType}&updateId=${article.id}&page=${curr}"
+								<td><a
+									href="/MyBlog/updatePad.do?articleType=${articleType}&updateId=${article.id}&page=${curr}"
 									data-method="offset" data-type="auto" class="">编辑</a>|<a
 									id="${article.id}" href="javascript:void(0)"
 									data-method="offset" data-type="auto" class="layer_btn">分类</a>|<a
@@ -240,7 +241,9 @@
 														+ id
 														+ '" class="layui-form layui-form-pane tanchuang" action="/MyBlog/classIficat.do?page=${curr}&classId='
 														+ id
-														+ '" method="post"><select name="articleType" lay-verify=""><option value="">设置状态</option><option value="design ">设计</option><option value="front-end">前端</option><option value="back-end">后端</option><option value="tool">工具资源</option><option value="bugRecord">bug记录</option><option value="experience">经验总结</option></select></form>',
+														+ '" method="post"><select name="articleType" lay-verify=""><option value="">设置状态</option><option value="design ">设计</option><option value="front-end">前端</option><option value="back-end">后端</option><option value="tool">工具资源</option><option value="bugRecord">bug记录</option><option value="experience">经验总结</option></select>'
+														+ '<input type="hidden" name="lastType" value="${articleType}"></input>'
+														+ '</form>',
 												btn : [ 'yes', 'no' ],
 												shade : [ 0.8, '#000' ],
 												btnAlign : 'c', //按钮居中
@@ -357,7 +360,9 @@
 														+ id
 														+ '"  class="layui-form layui-form-pane tanchuang" action="/MyBlog/classIficat.do?page=${curr}&classId='
 														+ id
-														+ '" method="post"><select name="articleType" lay-verify=""><option value="">分类设置</option><option value="design ">设计</option><option value="front-end">前端</option><option value="back-end">后端</option><option value="tool">工具资源</option><option value="bugRecord">bug记录</option><option value="experience">经验总结</option></select></form>',
+														+ '" method="post"><select name="articleType" lay-verify=""><option value="">分类设置</option><option value="design ">设计</option><option value="front-end">前端</option><option value="back-end">后端</option><option value="tool">工具资源</option><option value="bugRecord">bug记录</option><option value="experience">经验总结</option></select>'
+														+ '<input type="hidden" name="lastType" value="${articleType}"></input>'
+														+ '</form>',
 												btn : [ 'yes', 'no' ],
 												shade : [ 0.8, '#000' ],
 												btnAlign : 'c', //按钮居中
