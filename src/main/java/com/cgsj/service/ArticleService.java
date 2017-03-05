@@ -32,6 +32,9 @@ public interface ArticleService {
 
 	// 改变文章分类
 	public int classIficat(String articleType, Integer id);
+	
+	//改变文章内容或标题
+		public int  updateArticle(BlogArticle blogArticle);
 
 	// 添加新文章
 	public int addArticle(BlogArticle blogArticle);

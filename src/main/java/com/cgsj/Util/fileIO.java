@@ -37,7 +37,9 @@ public class fileIO {
 			newfile.mkdir();
 		}
 		File newtext = new File("F:/MyBlog/" + articleType + "/" + articleId + ".txt");
-		newtext.createNewFile();
+		if(!newtext.exists()){
+			newtext.createNewFile();
+		}
 		FileOutputStream outputStream = new FileOutputStream(newtext);
 		OutputStreamWriter streamWriter = new OutputStreamWriter(outputStream, "GBK");
 		StringReader stringReader = new StringReader(textContent);

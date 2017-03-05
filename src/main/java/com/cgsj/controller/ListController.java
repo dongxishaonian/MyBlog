@@ -32,7 +32,7 @@ public class ListController {
 		List<BlogArticle> topArticles = new ArrayList<>();
 		PageInfo<BlogArticle> page = new PageInfo<>();
 		int curr = 1;
-		if (request.getParameter("page") != null||request.getParameter("page") =="") {
+		if (request.getParameter("page") != null || request.getParameter("page") == "") {
 			curr = Integer.parseInt(request.getParameter("page"));
 		}
 
@@ -67,17 +67,21 @@ public class ListController {
 		System.out.println("allArticle的长度：" + allArticles.size());
 		for (int i = 1; i <= allArticles.size(); i++) {
 			System.out.println(dateFormat.format(allArticles.get(i - 1).getReleaseDate()));
-			data += "<tr>" + "<td>" + i + "</td>"
-					+ "<td><a href=\"/MyBlog/readPad.do?articleType="+articleType+"&articleId="+ allArticles.get(i - 1).getId()+"&page="+pageindex+"\""
-					+ " data-method=\"offset\" data-type=\"auto\" class=\"\">"+allArticles.get(i - 1).getTitle()+" </a></td>" + "<td>"
-					+ allArticles.get(i - 1).getReadingVolume() + "</td>" + "<td>"
+			data += "<tr>" + "<td>" + i + "</td>" + "<td><a href=\"/MyBlog/readPad.do?articleType=" + articleType
+					+ "&articleId=" + allArticles.get(i - 1).getId() + "&page=" + pageindex + "\""
+					+ " data-method=\"offset\" data-type=\"auto\" class=\"\">" + allArticles.get(i - 1).getTitle()
+					+ " </a></td>" + "<td>" + allArticles.get(i - 1).getReadingVolume() + "</td>" + "<td>"
 					+ dateFormat.format(allArticles.get(i - 1).getReleaseDate()) + "</td>";
 			if (session.getAttribute("username") != null || session.getAttribute("username") == "admin") {
 				panduan = "<td>" + "<form class=" + "\"layui-form layui-form-pane\"" + " action=\" \" " + ">"
 						+ "<select name=\"city\" lay-verify=\"\">" + "<option value=\"\">设置状态</option>"
 						+ "<option value=\"020\">状态</option>" + "<option value=\"010\">设置</option>"
 						+ "<option value=\"0571\">设态</option>" + "<option value=\"\">&nbsp;</option>" + "</select>"
-						+ "</form>" + "</td>" + "<td>" + "编辑|<a id=\"" + allArticles.get(i - 1).getId()
+						+ "</form>" + "</td>" + "<td>" + "<a  href=\"/MyBlog/updatePad.do?articleType="
+						+ allArticles.get(i - 1).getArticleType() + "&updateId=" + allArticles.get(i - 1).getId()
+						+ "&page=" + pageindex
+						+ "\" data-method=\"offset\" data-type=\"auto\" class=\"\">编辑</a>|<a id=\""
+						+ allArticles.get(i - 1).getId()
 						+ "\" href=\"javascript:void(0)\" data-method=\"offset\" data-type=\"auto\" class=\"layer_btn\">分类</a>|<a class=\"top_article\"  href=\"/MyBlog/top.do?articleType="
 						+ allArticles.get(i - 1).getArticleType() + "&topId=" + allArticles.get(i - 1).getId()
 						+ "&page=" + pageindex + "\"" + ">置顶</a>|<a id=" + "\"" + allArticles.get(i - 1).getId() + "\""

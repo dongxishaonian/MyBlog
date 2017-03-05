@@ -68,4 +68,9 @@ public class ArticleServiceImpl implements ArticleService {
 		return articleDao.getOne(id) ;
 	}
 
+	@Override
+	public int updateArticle(BlogArticle blogArticle) {
+		return articleDao.updateArticle(blogArticle);
+	}
+
 }

@@ -143,7 +143,9 @@
 										</select>
 									</form>
 								</td>
-								<td>编辑|<a id="${article.id}" href="javascript:void(0)"
+								<td><a href="/MyBlog/updatePad.do?articleType=${articleType}&updateId=${article.id}&page=${curr}"
+									data-method="offset" data-type="auto" class="">编辑</a>|<a
+									id="${article.id}" href="javascript:void(0)"
 									data-method="offset" data-type="auto" class="layer_btn">分类</a>|<a
 									class="top_article"
 									href="/MyBlog/untop.do?articleType=${articleType}&untopId=${article.id}&page=${curr}">取消置顶</a>|<a
