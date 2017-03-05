@@ -17,10 +17,11 @@ public interface ArticleDao {
 	// 获取指定类型文章
 	public ArrayList<BlogArticle> gainByType(String articleType,RowBounds rowBounds);
 	public ArrayList<BlogArticle> gainByType(String articleType);
-	
+	public ArrayList<BlogArticle> gainByTypeyk(String articleType);
 	
 	//获取指定类型置顶文章
 	public ArrayList<BlogArticle> topByType(String articleType);
+	public ArrayList<BlogArticle> topByTypeyk(String articleType);
 	
 
 	// 删除指定文章

@@ -73,4 +73,14 @@ public class ArticleServiceImpl implements ArticleService {
 		return articleDao.updateArticle(blogArticle);
 	}
 
+	@Override
+	public ArrayList<BlogArticle> gainByTypeyk(String articleType) {
+		return articleDao.gainByTypeyk(articleType);
+	}
+
+	@Override
+	public ArrayList<BlogArticle> topByTypeyk(String articleType) {
+		return articleDao.topByTypeyk(articleType);
+	}
+
 }

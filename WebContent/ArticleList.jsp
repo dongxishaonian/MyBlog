@@ -132,17 +132,11 @@
 							<td><fmt:formatDate type="date"
 									value="${article.releaseDate}" /></td>
 							<c:if test="${sessionScope.username eq 'admin'}">
-								<td>
-									<form class="layui-form layui-form-pane" action="">
-										<select name="city" lay-verify="">
-											<option value="">设置状态</option>
-											<option value="010">北京</option>
-											<option value="021">上海</option>
-											<option value="0571">杭州</option>
-											<option value="">&nbsp;</option>
-										</select>
-									</form>
-								</td>
+								<td><select id="${article.id}" class="articleStatus"
+									name="articleStatus" lay-verify="" >
+										<option value="1"  <c:if test="${article.articleStatus eq 1}">selected="selected"</c:if> >可视</option>
+										<option value="0"  <c:if test="${article.articleStatus eq 0}">selected="selected"</c:if>>不可视</option>
+								</select></td>
 								<td><a
 									href="/MyBlog/updatePad.do?articleType=${articleType}&updateId=${article.id}&page=${curr}"
 									data-method="offset" data-type="auto" class="">编辑</a>|<a
@@ -167,17 +161,11 @@
 							<td><fmt:formatDate type="date"
 									value="${article.releaseDate}" /></td>
 							<c:if test="${sessionScope.username eq 'admin'}">
-								<td>
-									<form class="layui-form layui-form-pane" action="">
-										<select name="city" lay-verify="">
-											<option value="">设置状态</option>
-											<option value="010">北京</option>
-											<option value="021">上海</option>
-											<option value="0571">杭州</option>
-											<option value="">&nbsp;</option>
-										</select>
-									</form>
-								</td>
+								<td><select id="${article.id}" class="articleStatus"
+									name="articleStatus">
+										<option value="1"  <c:if test="${article.articleStatus eq 1}">selected="selected"</c:if> >可视</option>
+										<option value="0"  <c:if test="${article.articleStatus eq 0}">selected="selected"</c:if>>不可视</option>
+								</select></td>
 								<td>编辑|<a id="${article.id}" href="javascript:void(0)"
 									data-method="offset" data-type="auto" class="">分类</a>|<a
 									class="top_article"
@@ -241,9 +229,7 @@
 														+ id
 														+ '" class="layui-form layui-form-pane tanchuang" action="/MyBlog/classIficat.do?page=${curr}&classId='
 														+ id
-														+ '" method="post"><select name="articleType" lay-verify=""><option value="">设置状态</option><option value="design ">设计</option><option value="front-end">前端</option><option value="back-end">后端</option><option value="tool">工具资源</option><option value="bugRecord">bug记录</option><option value="experience">经验总结</option></select>'
-														+ '<input type="hidden" name="lastType" value="${articleType}"></input>'
-														+ '</form>',
+														+ '" method="post"><select name="articleType" lay-verify=""><option value="">设置状态</option><option value="design ">设计</option><option value="front-end">前端</option><option value="back-end">后端</option><option value="tool">工具资源</option><option value="bugRecord">bug记录</option><option value="experience">经验总结</option></select></form>',
 												btn : [ 'yes', 'no' ],
 												shade : [ 0.8, '#000' ],
 												btnAlign : 'c', //按钮居中
@@ -304,6 +290,35 @@
 																		form
 																				.render('select');
 																	});
+													$('.articleStatus')
+															.on(
+																	'change',
+																	function() {
+																		var id = $(
+																				this)
+																				.attr(
+																						'id');
+																		var articleStatus = $(
+																				this)
+																				.val();
+																		$
+																				.ajax({
+																					url : "/MyBlog/changeStatus.do",
+																					type : "post",
+																					dataType : "html",
+																					contentType : "application/x-www-form-urlencoded; charset=utf-8",
+																					timeout : 6000,
+																					data : {
+																						"id" : id,
+																						"status" : articleStatus
+																					},
+																					//获取成功，为页面新添加元素初始化
+																					success : function(
+																							msg) {
+																						alert(msg);
+																					}
+																				})
+																	});
 													//删除行为
 													$(".delete_article")
 															.click(
@@ -360,9 +375,7 @@
 														+ id
 														+ '"  class="layui-form layui-form-pane tanchuang" action="/MyBlog/classIficat.do?page=${curr}&classId='
 														+ id
-														+ '" method="post"><select name="articleType" lay-verify=""><option value="">分类设置</option><option value="design ">设计</option><option value="front-end">前端</option><option value="back-end">后端</option><option value="tool">工具资源</option><option value="bugRecord">bug记录</option><option value="experience">经验总结</option></select>'
-														+ '<input type="hidden" name="lastType" value="${articleType}"></input>'
-														+ '</form>',
+														+ '" method="post"><select name="articleType" lay-verify=""><option value="">分类设置</option><option value="design ">设计</option><option value="front-end">前端</option><option value="back-end">后端</option><option value="tool">工具资源</option><option value="bugRecord">bug记录</option><option value="experience">经验总结</option></select></form>',
 												btn : [ 'yes', 'no' ],
 												shade : [ 0.8, '#000' ],
 												btnAlign : 'c', //按钮居中
@@ -371,7 +384,7 @@
 													$(".tanchuang").submit();
 												},
 												btn2 : function() {
-													alert('no');
+													//alert($('.articleStatus').val());
 												},
 												cancel : function() {
 													layer.closeAll();
