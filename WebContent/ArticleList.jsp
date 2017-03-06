@@ -135,7 +135,7 @@
 								<td><select id="${article.id}" class="articleStatus"
 									name="articleStatus" lay-verify="" >
 										<option value="1"  <c:if test="${article.articleStatus eq 1}">selected="selected"</c:if> >可视</option>
-										<option value="0"  <c:if test="${article.articleStatus eq 0}">selected="selected"</c:if>>不可视</option>
+										<option value="0"  <c:if test="${article.articleStatus ne 1}">selected="selected"</c:if>>不可视</option>
 								</select></td>
 								<td><a
 									href="/MyBlog/updatePad.do?articleType=${articleType}&updateId=${article.id}&page=${curr}"

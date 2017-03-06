@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="layui/css/layui.css" type="text/css" />
 <link rel="stylesheet" href="css/laybar.css" />
 <link rel="stylesheet" href="css/article.css" />
-<link rel="stylesheet" href="css/Wordpad.css" />
+<link rel="stylesheet" href="css/updatePad.css" />
 </head>
 
 <body>
@@ -102,7 +102,7 @@
 		</ul>
 		<button id="release" data-method="offset" data-type="auto"
 			class="layui-btn ">提交文章</button>
-		<button id="release" data-method="offset" data-type="auto"
+		<button id="back_btn" data-method="offset" data-type="auto"
 			class="layui-btn ">返回</button>
 
 	</div>
@@ -237,5 +237,10 @@
 										});
 					})
 </script>
-
+<script type="text/javascript">
+	var page = "${page}";
+	$("#back_btn").click(function() {
+		window.location.href="/MyBlog/list.do?articleType=${blogArticle.articleType}&page="+page;
+	})
+</script>
 </html>

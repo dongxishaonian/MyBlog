@@ -88,8 +88,8 @@ public class ListController {
 			if (session.getAttribute("username") != null || session.getAttribute("username") == "admin") {
 				panduan = "<td>" + "<select id=\"" + allArticles.get(i - 1).getId()
 						+ "\" class=\"articleStatus\" name=\"articleStatus\" lay-verify=\"\">" + "<option value=\"1\""
-						+ (allArticles.get(i - 1).getArticleStatus() == 1 ? status : "") + ">可视</option>"
-						+ "<option value=\"0\"" + (allArticles.get(i - 1).getArticleStatus() != 1 ? status : "")
+						+ ((allArticles.get(i - 1).getArticleStatus()!=null&&allArticles.get(i - 1).getArticleStatus() == 1) ? status : "") + ">可视</option>"
+						+ "<option value=\"0\"" + ((allArticles.get(i - 1).getArticleStatus() ==null||allArticles.get(i - 1).getArticleStatus() != 1) ? status:"" )
 						+ ">不可视</option>" + "</select>" + "</td>" + "<td>"
 						+ "<a  href=\"/MyBlog/updatePad.do?articleType=" + allArticles.get(i - 1).getArticleType()
 						+ "&updateId=" + allArticles.get(i - 1).getId() + "&page=" + pageindex
