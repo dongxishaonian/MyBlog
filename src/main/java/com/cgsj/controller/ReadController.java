@@ -32,6 +32,7 @@ public class ReadController {
 //		if (session.getAttribute("username") == null || session.getAttribute("username") == "") {
 //			return "redirect:/login.do";
 //		}
+		articleService.addVolume(articleId);
 		BlogArticle blogArticle = articleService.getOne(articleId);
 		request.setAttribute("blogArticle", blogArticle);
 		request.setAttribute("page", request.getParameter("page"));

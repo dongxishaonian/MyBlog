@@ -42,6 +42,7 @@ public class WriteController {
 		Calendar calendar = Calendar.getInstance();
 		article.setArticleType(articleType);
 		article.setTitle(title);
+		article.setReadingVolume(0);
 		article.setReleaseDate(calendar.getTime());
 		// 文章基本信息写入数据库
 		articleService.addArticle(article);

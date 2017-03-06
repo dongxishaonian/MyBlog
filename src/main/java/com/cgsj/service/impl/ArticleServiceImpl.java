@@ -83,4 +83,9 @@ public class ArticleServiceImpl implements ArticleService {
 		return articleDao.topByTypeyk(articleType);
 	}
 
+	@Override
+	public int addVolume(int id) {
+		return articleDao.addVolume(id);
+	}
+
 }

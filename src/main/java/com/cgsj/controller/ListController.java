@@ -35,7 +35,7 @@ public class ListController {
 		List<BlogArticle> topArticles = new ArrayList<>();
 		PageInfo<BlogArticle> page = new PageInfo<>();
 		int curr = 1;
-		if (request.getParameter("page") != null || request.getParameter("page") == "") {
+		if (request.getParameter("page") != null &&request.getParameter("page") != "") {
 			curr = Integer.parseInt(request.getParameter("page"));
 		}
 

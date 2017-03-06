@@ -40,5 +40,8 @@ public interface ArticleService {
 
 	// 添加新文章
 	public int addArticle(BlogArticle blogArticle);
+	
+	//阅读后增加阅读量
+		public int  addVolume(int id);
 
 }
