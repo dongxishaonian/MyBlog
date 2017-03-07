@@ -37,7 +37,7 @@ public class fileIO {
 		System.out.println("保存文章的内容为：" + textContent);
 		File newfile = new File("F:/MyBlog/" + articleType);
 		if (!newfile.exists()) {
-			newfile.mkdir();
+			System.out.println("创建文件夹"+newfile.mkdir());
 		}
 		File newtext = new File("F:/MyBlog/" + articleType + "/" + articleId + ".txt");
 		if (!newtext.exists()) {
@@ -58,7 +58,21 @@ public class fileIO {
 	}
 
 	// 删除保存在服务器的文件
-	public int deleteFile(String lastType, String articleType, int articleId) throws IOException {
+	public int deleteFile(String articleType, int articleId) throws IOException {
+		File newfile = new File("F:/MyBlog/" + articleType);
+		File newtext;
+		// 删除出已有文件
+		if (newfile.exists()) {
+			newtext = new File("F:/MyBlog/" + articleType + "/" + articleId + ".txt");
+			if (newtext.exists()) {
+				newtext.delete();
+			}
+		}
+		return 1;
+	}
+
+	// 更改文章的分类
+	public int changeFile(String lastType, String articleType, int articleId) throws IOException {
 		File newfile = new File("F:/MyBlog/" + lastType);
 		File newtext;
 		String textContent = "";

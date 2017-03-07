@@ -104,8 +104,9 @@
 			class="layui-btn ">发表文章</button>
 	</div>
 	<div class="article_Title" style="">
-		<input id="text_title" type="text" name="title" required lay-verify="required"
-			placeholder="请输入文章标题" autocomplete="off" class="layui-input">
+		<input id="text_title" type="text" name="title" required
+			lay-verify="required" placeholder="请输入文章标题" autocomplete="off"
+			class="layui-input">
 	</div>
 	<div id="editormd">
 		<textarea style="display: none;">### Hello Editor.md !</textarea>
@@ -186,8 +187,8 @@
 											content : '<form id="'
 													+ id
 													+ '"  class="layui-form layui-form-pane tanchuang" action="/MyBlog/save.do?title='
-													+	texttitle	
-													+ '" method="post"><select name="articleType" lay-verify=""><option value="">分类设置</option><option value="design">设计</option><option value="front-end">前端</option><option value="back-end">后端</option><option value="tool">工具资源</option><option value="bugRecord">bug记录</option><option value="experience">经验总结</option></select>'
+													+ texttitle
+													+ '" method="post"><select id="articleType"  name="articleType" lay-verify=""><option value="">分类设置</option><option value="design">设计</option><option value="front-end">前端</option><option value="back-end">后端</option><option value="tool">工具资源</option><option value="bugRecord">bug记录</option><option value="experience">经验总结</option></select>'
 													+ '<input type="hidden" name="textcontent" value="'+textcontent+'"></input>'
 													+ '</form>',
 											btn : [ '发布', '取消' ],
@@ -195,7 +196,14 @@
 											btnAlign : 'c', //按钮居中
 											yes : function() {
 												//储存文章
-												$(".tanchuang").submit();
+												if ($("#articleType").val() == null
+														|| $("#articleType")
+																.val() == "") {
+													alert("请选择文章分类")
+												} else {
+													$(".tanchuang").submit();
+												}
+
 											},
 											btn2 : function() {
 												alert('no');

@@ -133,9 +133,11 @@
 									value="${article.releaseDate}" /></td>
 							<c:if test="${sessionScope.username eq 'admin'}">
 								<td><select id="${article.id}" class="articleStatus"
-									name="articleStatus" lay-verify="" >
-										<option value="1"  <c:if test="${article.articleStatus eq 1}">selected="selected"</c:if> >可视</option>
-										<option value="0"  <c:if test="${article.articleStatus ne 1}">selected="selected"</c:if>>不可视</option>
+									name="articleStatus" lay-verify="">
+										<option value="1"
+											<c:if test="${article.articleStatus ne 1}">selected="selected"</c:if>>可视</option>
+										<option value="0"
+											<c:if test="${article.articleStatus eq 1}">selected="selected"</c:if>>不可视</option>
 								</select></td>
 								<td><a
 									href="/MyBlog/updatePad.do?articleType=${articleType}&updateId=${article.id}&page=${curr}"
@@ -163,8 +165,10 @@
 							<c:if test="${sessionScope.username eq 'admin'}">
 								<td><select id="${article.id}" class="articleStatus"
 									name="articleStatus">
-										<option value="1"  <c:if test="${article.articleStatus eq 1}">selected="selected"</c:if> >可视</option>
-										<option value="0"  <c:if test="${article.articleStatus eq 0}">selected="selected"</c:if>>不可视</option>
+										<option value="1"
+											<c:if test="${article.articleStatus ne 1}">selected="selected"</c:if>>可视</option>
+										<option value="0"
+											<c:if test="${article.articleStatus eq 1}">selected="selected"</c:if>>不可视</option>
 								</select></td>
 								<td>编辑|<a id="${article.id}" href="javascript:void(0)"
 									data-method="offset" data-type="auto" class="">分类</a>|<a
@@ -229,7 +233,9 @@
 														+ id
 														+ '" class="layui-form layui-form-pane tanchuang" action="/MyBlog/classIficat.do?page=${curr}&classId='
 														+ id
-														+ '" method="post"><select name="articleType" lay-verify=""><option value="">设置状态</option><option value="design ">设计</option><option value="front-end">前端</option><option value="back-end">后端</option><option value="tool">工具资源</option><option value="bugRecord">bug记录</option><option value="experience">经验总结</option></select></form>',
+														+ '" method="post"><select name="articleType" lay-verify=""><option value="">设置状态</option><option value="design ">设计</option><option value="front-end">前端</option><option value="back-end">后端</option><option value="tool">工具资源</option><option value="bugRecord">bug记录</option><option value="experience">经验总结</option></select>'
+														+ '<input type="hidden" name="lastType" value="${articleType}"></input>'
+														+ '</form>',
 												btn : [ 'yes', 'no' ],
 												shade : [ 0.8, '#000' ],
 												btnAlign : 'c', //按钮居中
@@ -335,12 +341,12 @@
 																					buttons : {
 																						继续 : function() {
 																							var articleType = "${articleType}";
-																							window.location.href = "/MyBlog/delete.do?articleType="
-																									+ articleType
-																									+ "&deleteId="
-																									+ delete_id
-																									+ "&page="
-																									+ obj.curr;
+																								window.location.href = "/MyBlog/delete.do?articleType="
+																										+ articleType
+																										+ "&deleteId="
+																										+ delete_id
+																										+ "&page="
+																										+ obj.curr;
 																						},
 																						取消 : function() {
 																						}
@@ -375,7 +381,9 @@
 														+ id
 														+ '"  class="layui-form layui-form-pane tanchuang" action="/MyBlog/classIficat.do?page=${curr}&classId='
 														+ id
-														+ '" method="post"><select name="articleType" lay-verify=""><option value="">分类设置</option><option value="design ">设计</option><option value="front-end">前端</option><option value="back-end">后端</option><option value="tool">工具资源</option><option value="bugRecord">bug记录</option><option value="experience">经验总结</option></select></form>',
+														+ '" method="post"><select name="articleType" lay-verify=""><option value="">分类设置</option><option value="design ">设计</option><option value="front-end">前端</option><option value="back-end">后端</option><option value="tool">工具资源</option><option value="bugRecord">bug记录</option><option value="experience">经验总结</option></select>'
+														+ +'<input type="hidden" name="lastType" value="${articleType}"></input>'
+														+ '</form>',
 												btn : [ 'yes', 'no' ],
 												shade : [ 0.8, '#000' ],
 												btnAlign : 'c', //按钮居中
