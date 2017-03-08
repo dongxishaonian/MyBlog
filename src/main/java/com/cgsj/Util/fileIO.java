@@ -41,7 +41,9 @@ public class fileIO {
 		}
 		File newtext = new File("F:/MyBlog/" + articleType + "/" + articleId + ".txt");
 		if (!newtext.exists()) {
+			System.out.println(newtext.getAbsolutePath());
 			newtext.createNewFile();
+			System.out.println("创建文件成功！！！！！！！");
 		}
 		FileOutputStream outputStream = new FileOutputStream(newtext);
 		OutputStreamWriter streamWriter = new OutputStreamWriter(outputStream, "GBK");

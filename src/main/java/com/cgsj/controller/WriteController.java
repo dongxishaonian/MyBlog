@@ -36,6 +36,7 @@ public class WriteController {
 	public String save(@RequestParam("textcontent") String textcontent, @RequestParam("articleType") String articleType,
 			@RequestParam("title") String title, HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
+		System.out.println(title+"文章的标题");
 		fileIO io = new fileIO();
 		//String textContent = "";
 		BlogArticle article = new BlogArticle();

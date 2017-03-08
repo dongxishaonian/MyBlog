@@ -44,6 +44,7 @@ public class UpdateController {
 			HttpServletRequest request, HttpServletResponse response) throws IOException {
 		fileIO io = new fileIO();
 		// String textContent = "";
+		System.out.println("|"+articleType+"|");
 		BlogArticle article = articleService.getOne(articleId);
 		Calendar calendar = Calendar.getInstance();
 		article.setArticleType(articleType);

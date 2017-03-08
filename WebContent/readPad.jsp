@@ -158,8 +158,15 @@
 </script>
 <script type="text/javascript">
 	var page = "${page}";
-	$("#return_key").click(function() {
-		window.location.href="/MyBlog/list.do?articleType=${blogArticle.articleType}&page="+page;
-	})
+	$("#return_key")
+			.click(
+					function() {
+						if (page == "") {
+							window.location.href = "/MyBlog/list.do?articleType=${blogArticle.articleType}";
+						} else {
+							window.location.href = "/MyBlog/list.do?articleType=${blogArticle.articleType}&page="
+									+ page;
+						}
+					})
 </script>
 </html>

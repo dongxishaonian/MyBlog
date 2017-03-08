@@ -233,7 +233,7 @@
 														+ id
 														+ '" class="layui-form layui-form-pane tanchuang" action="/MyBlog/classIficat.do?page=${curr}&classId='
 														+ id
-														+ '" method="post"><select name="articleType" lay-verify=""><option value="">设置状态</option><option value="design ">设计</option><option value="front-end">前端</option><option value="back-end">后端</option><option value="tool">工具资源</option><option value="bugRecord">bug记录</option><option value="experience">经验总结</option></select>'
+														+ '" method="post"><select name="articleType" lay-verify=""><option value="">设置状态</option><option value="design">设计</option><option value="front-end">前端</option><option value="back-end">后端</option><option value="tool">工具资源</option><option value="bugRecord">bug记录</option><option value="experience">经验总结</option></select>'
 														+ '<input type="hidden" name="lastType" value="${articleType}"></input>'
 														+ '</form>',
 												btn : [ 'yes', 'no' ],
@@ -360,59 +360,7 @@
 						});
 	</script>
 	<script type="text/javascript">
-		layui
-				.use(
-						'layer',
-						function() { //独立版的layer无需执行这一句
-							var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
-							var active = {
-								offset : function(othis) {
-									var type = othis.data('type'), text = othis
-											.text();
-									var id = othis.attr('id');
-									layer
-											.open({
-												type : 1,
-												title : '文章分类',
-												area : [ '500px', '400px' ],
-												//offset:type,
-												id : 'LAY_DEMO' + type,
-												content : '<form id="'
-														+ id
-														+ '"  class="layui-form layui-form-pane tanchuang" action="/MyBlog/classIficat.do?page=${curr}&classId='
-														+ id
-														+ '" method="post"><select name="articleType" lay-verify=""><option value="">分类设置</option><option value="design ">设计</option><option value="front-end">前端</option><option value="back-end">后端</option><option value="tool">工具资源</option><option value="bugRecord">bug记录</option><option value="experience">经验总结</option></select>'
-														+ +'<input type="hidden" name="lastType" value="${articleType}"></input>'
-														+ '</form>',
-												btn : [ 'yes', 'no' ],
-												shade : [ 0.8, '#000' ],
-												btnAlign : 'c', //按钮居中
-												yes : function() {
-													//alert($(".tanchuang").attr("action"));
-													$(".tanchuang").submit();
-												},
-												btn2 : function() {
-													//alert($('.articleStatus').val());
-												},
-												cancel : function() {
-													layer.closeAll();
-												}
-											})
-
-								}
-							};
-							$('.layer_btn')
-									.on(
-											'click',
-											function() {
-												var othis = $(this), method = othis
-														.data('method');
-												active[method] ? active[method]
-														.call(this, othis) : '';
-												var form = layui.form(), layer = layui.layer, layedit = layui.layedit, laydate = layui.laydate;
-												form.render('select');
-											});
-						})
+		
 	</script>
 </body>
 </html>

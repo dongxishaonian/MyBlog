@@ -170,12 +170,12 @@
 					[ 'layer', 'form', 'layedit', 'laydate' ],
 					function() { //独立版的layer无需执行这一句
 						var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
+						var texttitle;
 						var active = {
 							offset : function(othis) {
 								var type = othis.data('type'), text = othis
 										.text();
 								var id = othis.attr('id');
-								var texttitle = $("#text_title").val();
 								var textcontent = cgEditor.getMarkdown();
 								layer
 										.open({
@@ -196,9 +196,8 @@
 											btnAlign : 'c', //按钮居中
 											yes : function() {
 												//储存文章
-												if ($("#articleType").val() == null
-														|| $("#articleType")
-																.val() == "") {
+												if (($("#articleType").val() == null || $(
+														"#articleType").val() == "")) {
 													alert("请选择文章分类")
 												} else {
 													$(".tanchuang").submit();
@@ -219,12 +218,18 @@
 								.on(
 										'click',
 										function() {
-											var othis = $(this), method = othis
-													.data('method');
-											active[method] ? active[method]
-													.call(this, othis) : '';
-											var form = layui.form(), layer = layui.layer, layedit = layui.layedit, laydate = layui.laydate;
-											form.render('select');
+											texttitle = $("#text_title").val()
+											if (texttitle == ""
+													|| texttitle == null) {
+												alert("请输入文章标题")
+											} else {
+												var othis = $(this), method = othis
+														.data('method');
+												active[method] ? active[method]
+														.call(this, othis) : '';
+												var form = layui.form(), layer = layui.layer, layedit = layui.layedit, laydate = layui.laydate;
+												form.render('select');
+											}
 										});
 					})
 </script>
