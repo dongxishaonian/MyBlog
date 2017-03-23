@@ -39,7 +39,7 @@ public class fileIO {
 		if (!newfile.exists()) {
 			System.out.println("创建文件夹"+newfile.mkdir());
 		}
-		File newtext = new File("F:/MyBlog/" + articleType + "/" + articleId + ".txt");
+		File newtext = new File("F:/MyBlog/" + articleType + "/" + articleId + ".md");
 		if (!newtext.exists()) {
 			System.out.println(newtext.getAbsolutePath());
 			newtext.createNewFile();
@@ -65,7 +65,7 @@ public class fileIO {
 		File newtext;
 		// 删除出已有文件
 		if (newfile.exists()) {
-			newtext = new File("F:/MyBlog/" + articleType + "/" + articleId + ".txt");
+			newtext = new File("F:/MyBlog/" + articleType + "/" + articleId + ".md");
 			if (newtext.exists()) {
 				newtext.delete();
 			}
@@ -81,7 +81,7 @@ public class fileIO {
 		fileIO fileIO = new fileIO();
 		// 删除出已有文件
 		if (newfile.exists()) {
-			newtext = new File("F:/MyBlog/" + lastType + "/" + articleId + ".txt");
+			newtext = new File("F:/MyBlog/" + lastType + "/" + articleId + ".md");
 			if (newtext.exists()) {
 				textContent = fileIO.fileRead(newtext);
 				System.out.println("文件是否删除成功" + newtext.delete());

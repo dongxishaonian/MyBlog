@@ -15,7 +15,6 @@
 <link rel="stylesheet" href="css/article.css" />
 <link rel="stylesheet" href="css/Wordpad.css" />
 </head>
-
 <body>
 	<script src="layui/layui.js"></script>
 	<script>
@@ -117,54 +116,73 @@
 <script type="text/javascript">
 	var cgEditor;
 	$(function() {
-		//$.get("getData.do", function(data) {
-		cgEditor = editormd("editormd", {
-			width : "90%",
-			height : 740,
-			path : 'bower_components/editor.md/lib/',
-			//theme : "dark",
-			//previewTheme : "dark",
-			//editorTheme : "pastel-on-dark",
-			//markdown : data,
-			codeFold : true,
-			//syncScrolling : false,
-			saveHTMLToTextarea : true, // 保存 HTML 到 Textarea
-			searchReplace : true,
-			//watch : false,                // 关闭实时预览
-			htmlDecode : "style,script,iframe|on*", // 开启 HTML 标签解析，为了安全性，默认不开启    
-			toolbar : true, //关闭工具栏
-			//previewCodeHighlight : false, // 关闭预览 HTML 的代码块高亮，默认开启
-			emoji : true,
-			taskList : true,
-			tocm : true, // Using [TOCM]
-			tex : true, // 开启科学公式TeX语言支持，默认关闭
-			flowChart : true, // 开启流程图支持，默认关闭
-			sequenceDiagram : true, // 开启时序/序列图支持，默认关闭,
-			//dialogLockScreen : false,   // 设置弹出层对话框不锁屏，全局通用，默认为true
-			//dialogShowMask : false,     // 设置弹出层对话框显示透明遮罩层，全局通用，默认为true
-			//dialogDraggable : false,    // 设置弹出层对话框不可拖动，全局通用，默认为true
-			//dialogMaskOpacity : 0.4,    // 设置透明遮罩层的透明度，全局通用，默认值为0.1
-			//dialogMaskBgColor : "#000", // 设置透明遮罩层的背景颜色，全局通用，默认为#fff
-			imageUpload : true,
-			imageFormats : [ "jpg", "jpeg", "gif", "png", "bmp", "webp" ],
-			imageUploadURL : "./php/upload.php",
-			onload : function() {
-				console.log('onload', this);
-				//cgEditor.previewing();
-				//alert(cgEditor+"xcscdsv");
-				//this.fullscreen();
-				//this.unwatch();
-				//this.watch().fullscreen();
-				//this.setMarkdown("#PHP");
-				//this.width("100%");
-				//this.height(480);
-				//this.resize("100%", 640);
-			}
-		});
-		//}, "text");
+		$.get("writeData.do", function(data) {
+			cgEditor = editormd("editormd", {
+				width : "90%",
+				height : 740,
+				path : 'bower_components/editor.md/lib/',
+				//theme : "dark",
+				//previewTheme : "dark",
+				//editorTheme : "pastel-on-dark",
+				markdown : data,
+				codeFold : true,
+				//syncScrolling : false,
+				saveHTMLToTextarea : true, // 保存 HTML 到 Textarea
+				searchReplace : true,
+				//watch : false,                // 关闭实时预览
+				htmlDecode : "style,script,iframe|on*", // 开启 HTML 标签解析，为了安全性，默认不开启    
+				toolbar : true, //关闭工具栏
+				//previewCodeHighlight : false, // 关闭预览 HTML 的代码块高亮，默认开启
+				emoji : true,
+				taskList : true,
+				tocm : true, // Using [TOCM]
+				tex : true, // 开启科学公式TeX语言支持，默认关闭
+				flowChart : true, // 开启流程图支持，默认关闭
+				sequenceDiagram : true, // 开启时序/序列图支持，默认关闭,
+				//dialogLockScreen : false,   // 设置弹出层对话框不锁屏，全局通用，默认为true
+				//dialogShowMask : false,     // 设置弹出层对话框显示透明遮罩层，全局通用，默认为true
+				//dialogDraggable : false,    // 设置弹出层对话框不可拖动，全局通用，默认为true
+				//dialogMaskOpacity : 0.4,    // 设置透明遮罩层的透明度，全局通用，默认值为0.1
+				//dialogMaskBgColor : "#000", // 设置透明遮罩层的背景颜色，全局通用，默认为#fff
+				imageUpload : true,
+				imageFormats : [ "jpg", "jpeg", "gif", "png", "bmp", "webp" ],
+				imageUploadURL : "./php/upload.php",
+				onload : function() {
+					console.log('onload', this);
+					//cgEditor.previewing();
+					//alert(cgEditor+"xcscdsv");
+					//this.fullscreen();
+					//this.unwatch();
+					//this.watch().fullscreen();
+					//this.setMarkdown("#PHP");
+					//this.width("100%");
+					//this.height(480);
+					//this.resize("100%", 640);
+				}
+			});
+		}, "text");
 	});
 </script>
 <script type="text/javascript">
+	window.onbeforeunload = function() {
+		var textcontent = cgEditor.getMarkdown();
+		$.ajax({
+			url : "/MyBlog/setData.do",
+			type : "post",
+			dataType : "html",
+			contentType : "application/x-www-form-urlencoded; charset=utf-8",
+			timeout : 6000,
+			data : {
+				"textcontent" : textcontent
+			},
+			//获取成功，为页面新添加元素初始化
+			success : function(msg) {
+				//alert(textcontent);
+			}
+		})
+		return (textcontent);//IE 谷歌浏览器提示（opera浏览器只有刷新时提示）
+		//ajax获取页面内容
+	}
 	layui
 			.use(
 					[ 'layer', 'form', 'layedit', 'laydate' ],
