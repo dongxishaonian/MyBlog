@@ -18,6 +18,12 @@ body{
 	width: 100%;
 	height: 800px;
 }
+.ListContent th{
+	text-align: center;
+}
+.ListContent td{
+	text-align: center;
+}
 #demo7{
 	text-align: center;
 }
@@ -47,3 +53,5 @@ body{
 	font-family: "微软雅黑" ;
 	color: #bdc1cd;
 }
+
+

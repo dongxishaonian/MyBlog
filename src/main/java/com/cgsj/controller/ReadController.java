@@ -28,20 +28,21 @@ public class ReadController {
 	@RequestMapping("/readPad")
 	public String readPad(@RequestParam("articleType") String articleType, @RequestParam("articleId") int articleId,
 			HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		if (session.getAttribute("username") == null || session.getAttribute("username") == "") {
-			return "redirect:/login.do";
-		}
+//		HttpSession session = request.getSession();
+//		if (session.getAttribute("username") == null || session.getAttribute("username") == "") {
+//			return "redirect:/login.do";
+//		}
+		articleService.addVolume(articleId);
 		BlogArticle blogArticle = articleService.getOne(articleId);
 		request.setAttribute("blogArticle", blogArticle);
-	//	request.setAttribute("articleId", articleId);
+		request.setAttribute("page", request.getParameter("page"));
 		return "readPad";
 	}
 
 	@RequestMapping("/getData")
 	public void getData(@RequestParam("articleType") String articleType, @RequestParam("articleId") int articleId,
 			HttpServletRequest request, HttpServletResponse response) throws IOException {
-		File file = new File("F:/MyBlog/"+articleType+"/" + articleId + ".txt");
+		File file = new File("F:/MyBlog/"+articleType+"/" + articleId + ".md");
 		fileIO fileIO = new fileIO();
 		String content = "";
 		content = fileIO.fileRead(file);

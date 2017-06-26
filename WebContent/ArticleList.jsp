@@ -110,44 +110,45 @@
 		<hr />
 		<div class="ListContent">
 			<table class="layui-table" lay-even="" lay-skin="nob">
-				<colgroup>
-					<col width="40">
-					<col width="150">
-					<col width="70">
-					<col>
-				</colgroup>
+
 				<thead>
 					<tr>
 						<th style="width: 5 px;"></th>
 						<th>标题</th>
 						<th>阅读</th>
 						<th>日期</th>
-						<th>状态设置</th>
-						<th>操作</th>
+						<c:if test="${sessionScope.username eq 'admin'}">
+							<th>状态设置</th>
+							<th>操作</th>
+						</c:if>
 					</tr>
 					<c:forEach varStatus="status" items="${topArticles}" var="article">
 						<tr>
 							<td style="width: 5px;">置顶</td>
-							<td>${article.title}</td>
+							<td><a
+								href="/MyBlog/readPad.do?articleType=${articleType}&articleId=${article.id}&page=${curr}"
+								data-method="offset" data-type="auto" class="">${article.title}</a></td>
 							<td>${article.readingVolume}</td>
 							<td><fmt:formatDate type="date"
 									value="${article.releaseDate}" /></td>
-							<td>
-								<form class="layui-form layui-form-pane" action="">
-									<select name="city" lay-verify="">
-										<option value="">设置状态</option>
-										<option value="010">北京</option>
-										<option value="021">上海</option>
-										<option value="0571">杭州</option>
-										<option value="">&nbsp;</option>
-									</select>
-								</form>
-							</td>
-							<td>编辑|<a id="${article.id}" href="javascript:void(0)" data-method="offset"
-								data-type="auto" class="layer_btn">分类</a>|<a class="top_article"
-								href="/MyBlog/untop.do?articleType=${articleType}&untopId=${article.id}&page=${curr}">取消置顶</a>|<a
-								id="${article.id}" class="delete_article"
-								href="javascript:void(0)">删除</a></td>
+							<c:if test="${sessionScope.username eq 'admin'}">
+								<td><select id="${article.id}" class="articleStatus"
+									name="articleStatus" lay-verify="">
+										<option value="1"
+											<c:if test="${article.articleStatus ne 1}">selected="selected"</c:if>>可视</option>
+										<option value="0"
+											<c:if test="${article.articleStatus eq 1}">selected="selected"</c:if>>不可视</option>
+								</select></td>
+								<td><a
+									href="/MyBlog/updatePad.do?articleType=${articleType}&updateId=${article.id}&page=${curr}"
+									data-method="offset" data-type="auto" class="">编辑</a>|<a
+									id="${article.id}" href="javascript:void(0)"
+									data-method="offset" data-type="auto" class="layer_btn">分类</a>|<a
+									class="top_article"
+									href="/MyBlog/untop.do?articleType=${articleType}&untopId=${article.id}&page=${curr}">取消置顶</a>|<a
+									id="${article.id}" class="delete_article"
+									href="javascript:void(0)">删除</a></td>
+							</c:if>
 						</tr>
 					</c:forEach>
 				</thead>
@@ -155,26 +156,27 @@
 					<c:forEach varStatus="status" items="${allArticles}" var="article">
 						<tr>
 							<td style="width: 5px;">${status.count}</td>
-							<td>${article.title}</td>
+							<td><a
+								href="/MyBlog/readPad.do?articleType=${articleType}&articleId=${article.id}&page=${curr}"
+								data-method="offset" data-type="auto" class="layer_btn">${article.title}</a></td>
 							<td>${article.readingVolume}</td>
 							<td><fmt:formatDate type="date"
 									value="${article.releaseDate}" /></td>
-							<td>
-								<form class="layui-form layui-form-pane" action="">
-									<select name="city" lay-verify="">
-										<option value="">设置状态</option>
-										<option value="010">北京</option>
-										<option value="021">上海</option>
-										<option value="0571">杭州</option>
-										<option value="">&nbsp;</option>
-									</select>
-								</form>
-							</td>
-							<td>编辑|<a id="${article.id}" href="javascript:void(0)" data-method="offset"
-								data-type="auto" class="layer_btn">分类</a>|<a class="top_article"
-								href="/MyBlog/top.do?articleType=${articleType}&amp;topId=${article.id}&page=${curr}">置顶</a>|<a
-								id="${article.id}" class="delete_article"
-								href="javascript:void(0)">删除</a></td>
+							<c:if test="${sessionScope.username eq 'admin'}">
+								<td><select id="${article.id}" class="articleStatus"
+									name="articleStatus">
+										<option value="1"
+											<c:if test="${article.articleStatus ne 1}">selected="selected"</c:if>>可视</option>
+										<option value="0"
+											<c:if test="${article.articleStatus eq 1}">selected="selected"</c:if>>不可视</option>
+								</select></td>
+								<td>编辑|<a id="${article.id}" href="javascript:void(0)"
+									data-method="offset" data-type="auto" class="">分类</a>|<a
+									class="top_article"
+									href="/MyBlog/top.do?articleType=${articleType}&amp;topId=${article.id}&page=${curr}">置顶</a>|<a
+									id="${article.id}" class="delete_article"
+									href="javascript:void(0)">删除</a></td>
+							</c:if>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -227,7 +229,13 @@
 												area : [ '500px', '400px' ],
 												//offset:type,
 												id : 'LAY_DEMO' + type,
-												content : '<form id="'+id+'" class="layui-form layui-form-pane tanchuang" action="/MyBlog/classIficat.do?page=${curr}&classId='+id+'" method="post"><select name="articleType" lay-verify=""><option value="">设置状态</option><option value="design ">设计</option><option value="front-end">前端</option><option value="back-end">后端</option><option value="tool">工具资源</option><option value="bugRecord">bug记录</option><option value="experience">经验总结</option></select></form>',
+												content : '<form id="'
+														+ id
+														+ '" class="layui-form layui-form-pane tanchuang" action="/MyBlog/classIficat.do?page=${curr}&classId='
+														+ id
+														+ '" method="post"><select name="articleType" lay-verify=""><option value="">设置状态</option><option value="design">设计</option><option value="front-end">前端</option><option value="back-end">后端</option><option value="tool">工具资源</option><option value="bugRecord">bug记录</option><option value="experience">经验总结</option></select>'
+														+ '<input type="hidden" name="lastType" value="${articleType}"></input>'
+														+ '</form>',
 												btn : [ 'yes', 'no' ],
 												shade : [ 0.8, '#000' ],
 												btnAlign : 'c', //按钮居中
@@ -269,10 +277,8 @@
 												success : function(msg) {
 													$("#page_Information")
 															.append(msg);
-													var form = layui
-													.form(), layer = layui.layer, layedit = layui.layedit, laydate = layui.laydate;
-											form
-													.render('select');
+													var form = layui.form(), layer = layui.layer, layedit = layui.layedit, laydate = layui.laydate;
+													form.render('select');
 													//弹出层
 													$('.layer_btn')
 															.on(
@@ -290,6 +296,35 @@
 																		form
 																				.render('select');
 																	});
+													$('.articleStatus')
+															.on(
+																	'change',
+																	function() {
+																		var id = $(
+																				this)
+																				.attr(
+																						'id');
+																		var articleStatus = $(
+																				this)
+																				.val();
+																		$
+																				.ajax({
+																					url : "/MyBlog/changeStatus.do",
+																					type : "post",
+																					dataType : "html",
+																					contentType : "application/x-www-form-urlencoded; charset=utf-8",
+																					timeout : 6000,
+																					data : {
+																						"id" : id,
+																						"status" : articleStatus
+																					},
+																					//获取成功，为页面新添加元素初始化
+																					success : function(
+																							msg) {
+																						alert(msg);
+																					}
+																				})
+																	});
 													//删除行为
 													$(".delete_article")
 															.click(
@@ -306,12 +341,12 @@
 																					buttons : {
 																						继续 : function() {
 																							var articleType = "${articleType}";
-																							window.location.href = "/MyBlog/delete.do?articleType="
-																									+ articleType
-																									+ "&deleteId="
-																									+ delete_id
-																									+ "&page="
-																									+ obj.curr;
+																								window.location.href = "/MyBlog/delete.do?articleType="
+																										+ articleType
+																										+ "&deleteId="
+																										+ delete_id
+																										+ "&page="
+																										+ obj.curr;
 																						},
 																						取消 : function() {
 																						}
@@ -325,54 +360,7 @@
 						});
 	</script>
 	<script type="text/javascript">
-		layui
-				.use(
-						'layer',
-						function() { //独立版的layer无需执行这一句
-							var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
-							var active = {
-								offset : function(othis) {
-									var type = othis.data('type'), text = othis
-											.text();
-									var id = othis.attr('id');
-									layer
-											.open({
-												type : 1,
-												title : '文章分类',
-												area : [ '500px', '400px' ],
-												//offset:type,
-												id : 'LAY_DEMO' + type,
-												content : '<form id="'+id+'"  class="layui-form layui-form-pane tanchuang" action="/MyBlog/classIficat.do?page=${curr}&classId='+id+'" method="post"><select name="articleType" lay-verify=""><option value="">分类设置</option><option value="design ">设计</option><option value="front-end">前端</option><option value="back-end">后端</option><option value="tool">工具资源</option><option value="bugRecord">bug记录</option><option value="experience">经验总结</option></select></form>',
-												btn : [ 'yes', 'no' ],
-												shade : [ 0.8, '#000' ],
-												btnAlign : 'c', //按钮居中
-												yes : function() {
-													//alert($(".tanchuang").attr("action"));
-													$(".tanchuang").submit();
-												},
-												btn2 : function() {
-													alert('no');
-												},
-												cancel : function() {
-													layer.closeAll();
-												}
-											})
-
-								}
-							};
-							$('.layer_btn')
-									.on(
-											'click',
-											function() {
-												var othis = $(this), method = othis
-														.data('method');
-												active[method] ? active[method]
-														.call(this, othis) : '';
-												var form = layui.form(), layer = layui.layer, layedit = layui.layedit, laydate = layui.laydate;
-												form.render('select');
-											});
-						})
+		
 	</script>
 </body>
-
 </html>

@@ -1,0 +1,39 @@
+@CHARSET "UTF-8";
+body {
+	background-color: #F2F2F2;
+}
+
+.writerpad {
+	height: 100%;
+}
+
+.article_Title {
+	width: 60%;
+	margin-left: 20%;
+}
+.writerpad  ul {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	width: 30%;
+	float: left;
+	margin-left: 20%;
+}
+
+.writerpad #release {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	float: right;
+	margin-right: 20%;
+}
+.writerpad #back_btn {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	float: right;
+	margin-right: 8px;
+}
+
+.writerpad ul li {
+	font-family:"黑体";
+	font-size: 30px;
+	color: #111111
+}

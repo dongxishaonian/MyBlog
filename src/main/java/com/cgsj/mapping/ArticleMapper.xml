@@ -19,8 +19,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<parameter property="articleType" resultMap="ArticleresultMap" />
 	</parameterMap>
 
-	<select id="getOne" parameterType="int"  resultType="com.cgsj.entity.BlogArticle">
-		select * from blog_article  where id = #{id}
+	<select id="getOne" parameterType="int" resultType="com.cgsj.entity.BlogArticle">
+		select * from
+		blog_article where id = #{id}
 	</select>
 
 	<select id="gainAll" resultType="com.cgsj.entity.BlogArticle">
@@ -31,13 +32,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="gainByType" parameterType="java.lang.String"
 		resultType="com.cgsj.entity.BlogArticle">
 		select * from blog_article where ArticleType =
-		#{articleType} and (stickTop != 1 or stickTop is null ) 
+		#{articleType} and (stickTop != 1 or stickTop is null )
+	</select>
+	<select id="gainByTypeyk" parameterType="java.lang.String"
+		resultType="com.cgsj.entity.BlogArticle">
+		select * from blog_article where ArticleType =
+		#{articleType} and (stickTop != 1 or stickTop is null ) and
+		(articleStatus !=1 or articleStatus is null)
 	</select>
 
 	<select id="topByType" parameterType="java.lang.String"
 		resultType="com.cgsj.entity.BlogArticle">
 		select * from blog_article where ArticleType =
 		#{articleType} and stickTop = 1
+	</select>
+	<select id="topByTypeyk" parameterType="java.lang.String"
+		resultType="com.cgsj.entity.BlogArticle">
+		select * from blog_article where ArticleType =
+		#{articleType} and stickTop = 1 and (articleStatus !=1 or articleStatus is null)
 	</select>
 
 
@@ -64,8 +76,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where id = #{1}
 	</update>
 
-	<insert id="addArticle" parameterType="com.cgsj.entity.BlogArticle" useGeneratedKeys="true" keyProperty="id">
+	<update id="updateArticle" parameterType="com.cgsj.entity.BlogArticle">
+		update blog_article set
+		title =
+		#{title},articleType=#{articleType},releaseDate
+		=#{releaseDate},articleStatus =#{articleStatus}
+		where
+		id = #{id}
+	</update>
+
+
+	<update id="addVolume" parameterType="int">
+		update blog_article set
+		readingVolume = (readingVolume+1) where
+		id = #{id}
+	</update>
+
+	<insert id="addArticle" parameterType="com.cgsj.entity.BlogArticle"
+		useGeneratedKeys="true" keyProperty="id">
 		insert
-		blog_article(title,articleType,releaseDate) values(#{title},#{articleType},#{releaseDate})
+		blog_article(title,articleType,readingVolume,releaseDate)
+		values(#{title},#{articleType},#{readingVolume},#{releaseDate})
 	</insert>
 </mapper> 

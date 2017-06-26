@@ -7,13 +7,13 @@
 
 <head>
 <meta charset="UTF-8">
-<title>博客:${ blogArticle.title}</title>
+<title>写博客</title>
 <link rel="stylesheet"
 	href="bower_components/editor.md/css/editormd.min.css" />
 <link rel="stylesheet" href="layui/css/layui.css" type="text/css" />
 <link rel="stylesheet" href="css/laybar.css" />
 <link rel="stylesheet" href="css/article.css" />
-<link rel="stylesheet" href="css/Wordpad.css" />
+<link rel="stylesheet" href="css/updatePad.css" />
 </head>
 
 <body>
@@ -98,10 +98,18 @@
 	</div>
 	<div class="writerpad">
 		<ul>
-			<li>${blogArticle.title}</li>
+			<li>现在开始你的博客之旅吧！</li>
 		</ul>
-		<button id="return_key" data-method="offset" data-type="auto"
+		<button id="release" data-method="offset" data-type="auto"
+			class="layui-btn ">提交文章</button>
+		<button id="back_btn" data-method="offset" data-type="auto"
 			class="layui-btn ">返回</button>
+
+	</div>
+	<div class="article_Title" style="">
+		<input id="text_title" type="text" name="title" required
+			lay-verify="required" placeholder="请输入文章标题" autocomplete="off"
+			class="layui-input" value="${blogArticle.title}">
 	</div>
 	<div id="editormd">
 		<textarea style="display: none;">### Hello Editor.md !</textarea>
@@ -120,9 +128,9 @@
 								width : "90%",
 								height : 740,
 								path : 'bower_components/editor.md/lib/',
-								theme : "dark",
-								previewTheme : "dark",
-								editorTheme : "pastel-on-dark",
+								//theme : "dark",
+								//previewTheme : "dark",
+								//editorTheme : "pastel-on-dark",
 								markdown : data,
 								codeFold : true,
 								//syncScrolling : false,
@@ -130,7 +138,7 @@
 								searchReplace : true,
 								//watch : false,                // 关闭实时预览
 								htmlDecode : "style,script,iframe|on*", // 开启 HTML 标签解析，为了安全性，默认不开启    
-								toolbar : false, //关闭工具栏
+								toolbar : true, //关闭工具栏
 								//previewCodeHighlight : false, // 关闭预览 HTML 的代码块高亮，默认开启
 								emoji : true,
 								taskList : true,
@@ -149,24 +157,90 @@
 								imageUploadURL : "./php/upload.php",
 								onload : function() {
 									console.log('onload', this);
-									cgEditor.previewing();
-									$(".editormd-preview-close-btn").remove();
+									//cgEditor.previewing();
+									//alert(cgEditor+"xcscdsv");
+									//this.fullscreen();
+									//this.unwatch();
+									//this.watch().fullscreen();
+									//this.setMarkdown("#PHP");
+									//this.width("100%");
+									//this.height(480);
+									//this.resize("100%", 640);
 								}
 							});
 						}, "text");
 	});
 </script>
 <script type="text/javascript">
-	var page = "${page}";
-	$("#return_key")
-			.click(
-					function() {
-						if (page == "") {
-							window.location.href = "/MyBlog/list.do?articleType=${blogArticle.articleType}";
-						} else {
-							window.location.href = "/MyBlog/list.do?articleType=${blogArticle.articleType}&page="
-									+ page;
-						}
+	layui
+			.use(
+					[ 'layer', 'form', 'layedit', 'laydate' ],
+					function() { //独立版的layer无需执行这一句
+						var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
+						var active = {
+							offset : function(othis) {
+								var type = othis.data('type'), text = othis
+										.text();
+								var id = othis.attr('id');
+								//标题
+								var texttitle = $("#text_title").val();
+								//文章id
+								var articleId = "${blogArticle.id}";
+								//文章类
+								var articleType = "${blogArticle.articleType}";
+								//文章内容
+								var textcontent = cgEditor.getMarkdown();
+								layer
+										.open({
+											type : 1,
+											title : '注意!',
+											//area : [ '500px', '400px' ],
+											//offset:type,
+											id : 'LAY_DEMO' + type,
+											content : '<div style="padding: 20px 100px;">'
+													+ '是否提交文章'
+													+ '</div>'
+													+ '<form   class="layui-form layui-form-pane tanchuang" action="/MyBlog/update.do?page=${page}" method="post">'
+													+ '<input type="hidden" name="articleType" value="'+articleType+'"></input>'
+													+ '<input type="hidden" name="articleId" value="'+articleId+'"></input>'
+													+ '<input type="hidden" name="textcontent" value="'+textcontent+'"></input>'
+													+ '<input type="hidden" name="title" value="'+texttitle+'"></input>'
+													+ '</form>',
+											btn : [ '提交', '取消' ],
+											shade : [ 0.8, '#000' ],
+											btnAlign : 'c', //按钮居中
+											yes : function() {
+												//储存文章
+												$(".tanchuang").submit();
+
+											},
+											btn2 : function() {
+												alert('no');
+											},
+											cancel : function() {
+												layer.closeAll();
+											}
+										})
+
+							}
+						};
+						$('#release')
+								.on(
+										'click',
+										function() {
+											var othis = $(this), method = othis
+													.data('method');
+											active[method] ? active[method]
+													.call(this, othis) : '';
+											var form = layui.form(), layer = layui.layer, layedit = layui.layedit, laydate = layui.laydate;
+											form.render('select');
+										});
 					})
+</script>
+<script type="text/javascript">
+	var page = "${page}";
+	$("#back_btn").click(function() {
+		window.location.href="/MyBlog/list.do?articleType=${blogArticle.articleType}&page="+page;
+	})
 </script>
 </html>
