@@ -134,9 +134,9 @@
 							<c:if test="${sessionScope.username eq 'admin'}">
 								<td><select id="${article.id}" class="articleStatus"
 									name="articleStatus" lay-verify="">
-										<option value="1"
-											<c:if test="${article.articleStatus ne 1}">selected="selected"</c:if>>可视</option>
 										<option value="0"
+											<c:if test="${article.articleStatus ne 1}">selected="selected"</c:if>>可视</option>
+										<option value="1"
 											<c:if test="${article.articleStatus eq 1}">selected="selected"</c:if>>不可视</option>
 								</select></td>
 								<td><a
@@ -165,9 +165,9 @@
 							<c:if test="${sessionScope.username eq 'admin'}">
 								<td><select id="${article.id}" class="articleStatus"
 									name="articleStatus">
-										<option value="1"
-											<c:if test="${article.articleStatus ne 1}">selected="selected"</c:if>>可视</option>
 										<option value="0"
+											<c:if test="${article.articleStatus ne 1}">selected="selected"</c:if>>可视</option>
+										<option value="1"
 											<c:if test="${article.articleStatus eq 1}">selected="selected"</c:if>>不可视</option>
 								</select></td>
 								<td>编辑|<a id="${article.id}" href="javascript:void(0)"
@@ -297,15 +297,14 @@
 																				.render('select');
 																	});
 													$('.articleStatus')
-															.on(
-																	'change',
+															.change(
 																	function() {
 																		var id = $(
 																				this)
 																				.attr(
 																						'id');
 																		var articleStatus = $(
-																				this)
+																				this )
 																				.val();
 																		$
 																				.ajax({

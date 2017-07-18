@@ -42,7 +42,7 @@ public class ReadController {
 	@RequestMapping("/getData")
 	public void getData(@RequestParam("articleType") String articleType, @RequestParam("articleId") int articleId,
 			HttpServletRequest request, HttpServletResponse response) throws IOException {
-		File file = new File("F:/MyBlog/"+articleType+"/" + articleId + ".md");
+		File file = new File("/home/jeker/文档/MyBlog/"+articleType+"/" + articleId + ".md");
 		fileIO fileIO = new fileIO();
 		String content = "";
 		content = fileIO.fileRead(file);
