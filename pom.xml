@@ -132,6 +132,7 @@
 			<version>1.2</version>
 		</dependency>
 		<!-- 日志文件管理包 -->
+		
 		<!-- log start -->
 		<dependency>
 			<groupId>log4j</groupId>
